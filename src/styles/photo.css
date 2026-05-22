@@ -1,0 +1,309 @@
+.photo-screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+.photo-camera-frame {
+  width: 390px;
+  height: 844px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.photo-preview {
+  width: 410px;
+  height: 729px;
+  position: absolute;
+  left: -9px;
+  top: 73.8px;
+  object-fit: cover;
+}
+
+video.photo-preview.is-front-camera {
+  transform: scaleX(-1);
+}
+
+.photo-top-mask {
+  width: 390px;
+  height: 99px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #000;
+}
+
+.photo-status-dot {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  left: 275px;
+  top: 16px;
+  border-radius: 50%;
+  background: #75d15a;
+}
+
+.photo-flash {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 16px;
+  top: 59px;
+}
+
+.photo-flash-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.photo-flash-cross {
+  width: 21.077px;
+  height: 21.077px;
+  position: absolute;
+  left: 1.538px;
+  top: 1.539px;
+}
+
+.photo-swipe {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 184px;
+  top: 57px;
+}
+
+.photo-raw-live {
+  position: absolute;
+  left: 273px;
+  top: 56px;
+  display: flex;
+  align-items: center;
+}
+
+.photo-raw {
+  width: 79px;
+  height: 27px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+}
+
+.photo-raw-border {
+  width: 44.526px;
+  height: 24px;
+  position: absolute;
+  left: 17px;
+  top: 1px;
+  border-radius: 50px;
+  background: #d9d9d9;
+}
+
+.photo-raw-fill {
+  width: 41.171px;
+  height: 22px;
+  position: absolute;
+  left: 19px;
+  top: 2px;
+  border-radius: 50px;
+  background: #040301;
+}
+
+.photo-raw span:last-of-type {
+  position: relative;
+  z-index: 1;
+}
+
+.photo-raw img {
+  width: 19.004px;
+  height: 19.004px;
+  position: absolute;
+  left: 30px;
+  top: 4px;
+}
+
+.photo-live {
+  width: 27px;
+  height: 27px;
+  margin-left: -1px;
+}
+
+.photo-camera-controls {
+  width: 358px;
+  position: absolute;
+  left: 16px;
+  top: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.photo-zoom {
+  width: 81.304px;
+  height: 30px;
+  position: relative;
+}
+
+.photo-zoom-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 75px;
+  background: rgb(217 217 217 / 15%);
+}
+
+.photo-zoom-dot {
+  width: 16.957px;
+  height: 16.957px;
+  position: absolute;
+  top: 6.522px;
+}
+
+.photo-zoom-dot.is-left {
+  left: 5.87px;
+}
+
+.photo-zoom-dot.is-right {
+  left: 58.478px;
+}
+
+.photo-zoom-active {
+  width: 25.217px;
+  height: 25.217px;
+  position: absolute;
+  left: 28.043px;
+  top: 2.391px;
+}
+
+.photo-zoom-label {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  font-size: 8px;
+  line-height: 1;
+}
+
+.photo-zoom-label.is-left {
+  left: 9.218px;
+  top: 11.6px;
+}
+
+.photo-zoom-label.is-active {
+  left: 33px;
+  top: 8px;
+  color: #ffd50b;
+  font-size: 12px;
+}
+
+.photo-zoom-label.is-right {
+  left: 63.478px;
+  top: 11.9px;
+}
+
+.photo-modes {
+  width: 358px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.photo-modes .is-active {
+  color: #ffd50b;
+}
+
+.photo-actions {
+  width: 358px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.photo-thumbnail,
+.photo-shutter,
+.photo-flip {
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+.photo-thumbnail {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: rgb(0 0 0 / 35%);
+}
+
+.photo-thumbnail img {
+  width: 22.4px;
+  height: 22.4px;
+}
+
+.photo-shutter {
+  width: 72px;
+  height: 72px;
+}
+
+.photo-shutter img {
+  width: 72px;
+  height: 72px;
+}
+
+.photo-flip {
+  width: 48px;
+  height: 48px;
+}
+
+.photo-flip img {
+  width: 48px;
+  height: 48px;
+}
+
+.photo-file-input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.photo-bottom-bar {
+  width: 390px;
+  height: 84px;
+  position: absolute;
+  left: 0;
+  top: 760px;
+  border-top: 0.5px solid rgb(84 84 88 / 65%);
+  background: #000;
+}
+
+.photo-home-indicator {
+  width: 134px;
+  height: 5px;
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  border-radius: 100px;
+  background: #fff;
+}
+
+.photo-thumbnail:focus-visible,
+.photo-shutter:focus-visible,
+.photo-flip:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}

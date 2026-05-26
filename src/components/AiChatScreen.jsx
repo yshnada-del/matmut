@@ -95,7 +95,7 @@ const navItems = [
   },
 ]
 
-function AiChatScreen({ photoUrl, onBack, onOpenRecommendationList, onCameraAddress }) {
+function AiChatScreen({ photoUrl, onBack, onOpenRecommendationList, onCameraAddress, onReserve }) {
   const previewPhoto = photoUrl || '/assets/outfit.png'
   const [message, setMessage] = useState('')
   const [userMessages, setUserMessages] = useState([])
@@ -227,7 +227,12 @@ function AiChatScreen({ photoUrl, onBack, onOpenRecommendationList, onCameraAddr
                           {place.distance}
                         </span>
                       </div>
-                      <button className="aichat-reserve-button" type="button">
+                      <button
+                        className="aichat-reserve-button"
+                        type="button"
+                        onPointerDown={(event) => event.stopPropagation()}
+                        onClick={() => onReserve?.(place.id)}
+                      >
                         <img src="/assets/aichat-pin.svg" alt="" />
                         <span>예약하기</span>
                       </button>

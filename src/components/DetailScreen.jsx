@@ -184,7 +184,7 @@ const placeDetails = {
     website: 'https://www.instagram.com/oasisbrunch',
     mapImage: '/assets/figma-oasis-map.png',
     amenities: [
-      { icon: '/assets/detail-no-park.svg', label: '주차 가능' },
+      { icon: '/assets/detail-park.svg', label: '주차 가능' },
       { icon: '/assets/detail-restroom.svg', label: '남/녀 화장실\n구분' },
       { icon: '/assets/detail-wifi.svg', label: '무선 인터넷' },
       { icon: '/assets/detail-delivery.svg', label: '배달' },
@@ -220,6 +220,13 @@ const placeDetails = {
     phone: '02-797-0624',
     website: 'https://www.instagram.com/hannam_tatsu',
     mapImage: '/assets/aichat-place-tatsu.png',
+    amenities: [
+      { icon: '/assets/detail-park.svg', label: '주차 가능' },
+      { icon: '/assets/detail-restroom.svg', label: '남/녀 화장실\n구분' },
+      { icon: '/assets/detail-wifi.svg', label: '무선 인터넷' },
+      { icon: '/assets/detail-delivery.svg', label: '배달' },
+      { icon: '/assets/detail-package.svg', label: '포장' },
+    ],
   },
 }
 
@@ -269,6 +276,81 @@ const amenities = [
   { icon: '/assets/detail-delivery.svg', label: '배달' },
   { icon: '/assets/detail-takeout.svg', label: '포장' },
 ]
+
+const placeReviewData = {
+  pipeground: {
+    distribution: [
+      { label: '5점', count: 4915, fill: 82 },
+      { label: '4점', count: 1285, fill: 65 },
+      { label: '3점', count: 425, fill: 48 },
+      { label: '2점', count: 125, fill: 34 },
+      { label: '1점', count: 52, fill: 25 },
+    ],
+    filters: [
+      { id: 'best', label: '베스트순' },
+      { id: 'latest', label: '최신순' },
+    ],
+    reviews: [
+      {
+        author: '맛잘알지이수',
+        rating: '4.5',
+        date: '2026.04.20',
+        images: ['/assets/detail-review-pipe-1.png', '/assets/detail-review-pipe-2.png', '/assets/detail-review-pipe-3.png'],
+        text: '분위기 좋고 음식도 만족스러운 한남동 피자·파스타 맛집이에요. 옥수수 피자와 라구 파스타가 특히 유명하고 감각적인 인테리어 덕분에 데이트나 친구 모임 장소로도 잘 어울려요. 웨이팅이 있을 수 있어서 방문 전 체크는 필요한 편이에요.',
+        likes: 45,
+        comments: 12,
+      },
+    ],
+  },
+  oasis: {
+    distribution: [
+      { label: '5점', count: 1803, fill: 82 },
+      { label: '4점', count: 892, fill: 65 },
+      { label: '3점', count: 520, fill: 48 },
+      { label: '2점', count: 42, fill: 34 },
+      { label: '1점', count: 21, fill: 25 },
+    ],
+    filters: [
+      { id: 'best', label: '베스트순' },
+      { id: 'latest', label: '최신순' },
+    ],
+    reviews: [
+      {
+        author: '맛잘알지이수',
+        rating: '4.3',
+        date: '2026.04.20',
+        images: ['/assets/photo28.png', '/assets/photo31.png', '/assets/figma-oasis-main.png'],
+        text: '오아시스 한남점은 깔끔한 분위기와 여유로운 무드가 매력적인 한남동 브런치 맛집이에요. 에그 베네딕트와 프렌치 토스트처럼 인기 있는 브런치 메뉴가 잘 갖춰져 있고, 채광 좋은 공간 덕분에 친구와의 약속이나 가벼운 데이트 장소로도 잘 어울려요. 다만 인기 있는 편이라 방문 시간에 따라 대기가 있을 수 있어요.',
+        likes: 52,
+        comments: 8,
+      },
+    ],
+  },
+  tatsu: {
+    distribution: [
+      { label: '5점', count: 1021, fill: 82 },
+      { label: '4점', count: 482, fill: 65 },
+      { label: '3점', count: 86, fill: 48 },
+      { label: '2점', count: 43, fill: 34 },
+      { label: '1점', count: 21, fill: 25 },
+    ],
+    filters: [
+      { id: 'best', label: '베스트순' },
+      { id: 'latest', label: '최신순' },
+    ],
+    reviews: [
+      {
+        author: '맛잘알지이수',
+        rating: '4.6',
+        date: '2026.04.20',
+        images: ['/assets/main.png', '/assets/photo93.png', '/assets/photo91.png'],
+        text: '한남타츠는 차분하고 고급스러운 분위기에서 식사와 술자리를 함께 즐기기 좋은 한남동 이자카야예요. 사시미, 나베, 로바타야키처럼 메뉴 구성이 다양해서 여러 가지를 나눠 먹기 좋고, 오픈 주방이 주는 생동감 덕분에 공간의 분위기도 매력적으로 느껴져요. 가볍게 한 끼를 해결하는 느낌보다는, 분위기 있는 저녁 식사나 약속 장소로 더 잘 어울리는 곳이에요.',
+        likes: 72,
+        comments: 6,
+      },
+    ],
+  },
+}
 
 const openingHours = [
   { day: '토', time: '09:00 - 19:00', lastOrder: '18:00 라스트오더', active: true },
@@ -990,6 +1072,89 @@ const placePhotoSets = {
   },
 }
 
+function ReviewSection({ data, rating }) {
+  const [activeFilter, setActiveFilter] = useState(data.filters[0].id)
+  const reviewCards = Array.from({ length: 3 }, (_, index) => ({
+    ...data.reviews[0],
+    id: `${activeFilter}-${data.reviews[0].author}-${index}`,
+  }))
+
+  return (
+    <section className="detail-review-section" aria-label="리뷰">
+      <div className="detail-review-summary">
+        <div className="detail-review-score">
+          <img src="/assets/detail-star.svg" alt="" />
+          <strong>{rating}</strong>
+        </div>
+        <div className="detail-review-bars">
+          {data.distribution.map((item) => (
+            <div className="detail-review-bar-row" key={item.label}>
+              <span>{item.label}</span>
+              <div className="detail-review-bar-track">
+                <span style={{ width: `${item.fill}%` }} />
+              </div>
+              <em>{item.count}</em>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="detail-review-filters" aria-label="리뷰 정렬">
+        {data.filters.map((filter) => (
+          <button
+            className={activeFilter === filter.id ? 'is-active' : ''}
+            type="button"
+            key={filter.id}
+            aria-pressed={activeFilter === filter.id}
+            onClick={() => setActiveFilter(filter.id)}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="detail-review-list">
+        {reviewCards.map((review) => (
+          <article className="detail-review-card" key={review.id}>
+            <div className="detail-review-top">
+              <div className="detail-review-profile">
+                <img src="/assets/detail-review-avatar.png" alt="" />
+                <strong>{review.author}</strong>
+              </div>
+              <div className="detail-review-date">
+                <div>
+                  <img src="/assets/detail-star.svg" alt="" />
+                  <span>{review.rating}</span>
+                </div>
+                <time>{review.date}</time>
+              </div>
+            </div>
+
+            <div className="detail-review-body">
+              <div className="detail-review-images">
+                {review.images.map((image) => (
+                  <img src={image} alt="" key={image} />
+                ))}
+              </div>
+              <p>{review.text}</p>
+              <div className="detail-review-actions">
+                <span>
+                  <img src="/assets/detail-review-heart.svg" alt="" />
+                  {review.likes}
+                </span>
+                <span>
+                  <img src="/assets/detail-review-message.svg" alt="" />
+                  {review.comments}
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
   const [isHoursOpen, setIsHoursOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('info')
@@ -1007,6 +1172,7 @@ function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
   const activeMenuData = placeMenuData[placeId] || placeMenuData.pipeground
   const activePhotoSets = placePhotoSets[placeId] || placePhotoSets.pipeground
   const activePhotoSet = activePhotoSets[activePhotoCategory] || activePhotoSets.all
+  const activeReviewData = placeReviewData[placeId] || placeReviewData.pipeground
   const effectiveMenuCategory = activeMenuData.categories.some((category) => category.id === activeMenuCategory)
     ? activeMenuCategory
     : activeMenuData.categories[0].id
@@ -1264,6 +1430,8 @@ function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
               ))}
             </div>
           </section>
+        ) : activeTab === 'reviews' ? (
+          <ReviewSection data={activeReviewData} rating={place.rating} />
         ) : (
           <>
             <section className="detail-amenities" aria-label="편의 정보">

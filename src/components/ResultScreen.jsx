@@ -78,7 +78,7 @@ const navItems = [
   },
 ]
 
-function ResultScreen({ onBack, onCameraAddress, onOpenDetail }) {
+function ResultScreen({ onBack, onCameraAddress, onOpenDetail, onReserve }) {
   return (
     <section className="result-screen" aria-label="추천 결과">
       <StatusBar />
@@ -123,7 +123,7 @@ function ResultScreen({ onBack, onCameraAddress, onOpenDetail }) {
             <div className="result-card-window">
               <DragScrollRow className="result-card-row">
                 {resultPlaces.map((place) => (
-                  <PlaceCard place={place} key={place.id} onOpenDetail={onOpenDetail} />
+                  <PlaceCard place={place} key={place.id} onOpenDetail={onOpenDetail} onReserve={onReserve} />
                 ))}
               </DragScrollRow>
             </div>
@@ -137,7 +137,7 @@ function ResultScreen({ onBack, onCameraAddress, onOpenDetail }) {
   )
 }
 
-function PlaceCard({ place, onOpenDetail }) {
+function PlaceCard({ place, onOpenDetail, onReserve }) {
   const stopCardDrag = (event) => {
     event.stopPropagation()
   }
@@ -145,6 +145,11 @@ function PlaceCard({ place, onOpenDetail }) {
   const handleDetailClick = (event) => {
     event.stopPropagation()
     onOpenDetail?.(place.id)
+  }
+
+  const handleReserveClick = (event) => {
+    event.stopPropagation()
+    onReserve?.(place.id)
   }
 
   return (
@@ -185,7 +190,7 @@ function PlaceCard({ place, onOpenDetail }) {
           <button className="result-detail-button" type="button" onPointerDown={stopCardDrag} onClick={handleDetailClick}>
             상세 정보
           </button>
-          <button className="result-reserve-button" type="button" onPointerDown={stopCardDrag}>
+          <button className="result-reserve-button" type="button" onPointerDown={stopCardDrag} onClick={handleReserveClick}>
             <img src="/assets/result-calendar.svg" alt="" />
             예약하기
           </button>

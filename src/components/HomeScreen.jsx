@@ -115,9 +115,10 @@ const navItems = [
   },
 ]
 
-function HomeScreen({ onAddress }) {
+function HomeScreen({ onAddress, onMood, onReviewPage }) {
   const [activePreviewTab, setActivePreviewTab] = useState(previewTabs[0].id)
   const activePreviewIndex = previewTabs.findIndex((tab) => tab.id === activePreviewTab)
+  const openActivePreview = activePreviewTab === 'similar' ? onReviewPage : onMood
 
   return (
     <section className="home-screen" aria-label="홈">
@@ -166,7 +167,9 @@ function HomeScreen({ onAddress }) {
         <section className="home-preview" aria-labelledby="preview-title">
           <div className="home-section-title">
             <h2 id="preview-title">촬영전에 미리 둘러봐요</h2>
-            <button type="button">View all</button>
+            <button type="button" onClick={openActivePreview}>
+              View all
+            </button>
           </div>
 
           <div
@@ -229,7 +232,7 @@ function HomeScreen({ onAddress }) {
         </section>
       </main>
 
-      <BottomNavigation onCameraAddress={onAddress} />
+      <BottomNavigation onCameraAddress={onAddress} onMood={onMood} />
       <HomeIndicator />
     </section>
   )
@@ -300,7 +303,7 @@ function DragScrollRow({ children, className, ...props }) {
   )
 }
 
-function BottomNavigation({ onCameraAddress }) {
+function BottomNavigation({ onCameraAddress, onMood }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -310,6 +313,7 @@ function BottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'search' ? onMood : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

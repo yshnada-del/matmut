@@ -1,0 +1,356 @@
+.review-page-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.review-page-header {
+  height: 68.667px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+}
+
+.review-page-icon-button {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  padding: 0;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.review-page-back img,
+.review-page-menu span {
+  position: absolute;
+}
+
+.review-page-back-head {
+  width: 6.667px;
+  height: 13.333px;
+  left: 8px;
+  top: 11.333px;
+}
+
+.review-page-back-line {
+  width: 16.667px;
+  height: 1.667px;
+  left: 8px;
+  top: 17.167px;
+}
+
+.review-page-menu span {
+  width: 13.333px;
+  height: 1.667px;
+  left: 11.333px;
+  border-radius: 10px;
+  background: #999;
+}
+
+.review-page-menu span:nth-child(1) {
+  top: 12.167px;
+}
+
+.review-page-menu span:nth-child(2) {
+  top: 17.167px;
+}
+
+.review-page-menu span:nth-child(3) {
+  top: 22.167px;
+}
+
+.review-page-main {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.review-page-main::-webkit-scrollbar {
+  display: none;
+}
+
+.review-page-intro {
+  height: 98px;
+  padding: 24px;
+  border-bottom: 0.667px solid #27272a;
+  background: #18181b;
+}
+
+.review-page-intro p {
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.review-page-intro-title {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.review-page-intro-copy {
+  margin-top: 8px;
+  color: #999;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.review-page-filter-section {
+  height: 131px;
+  padding: 48px 24px;
+  overflow: hidden;
+}
+
+.review-page-filter-row {
+  width: 342px;
+  height: 35px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  cursor: grab;
+}
+
+.review-page-filter-row::-webkit-scrollbar {
+  display: none;
+}
+
+.review-page-filter-row.is-dragging {
+  cursor: grabbing;
+}
+
+.review-page-filter-row button {
+  width: auto;
+  height: 35px;
+  padding: 9px 18px;
+  border: 1px solid #fff;
+  border-radius: 999px;
+  background: transparent;
+  color: #999;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  flex: 0 0 auto;
+}
+
+.review-page-filter-row button.is-active {
+  border-color: #fff;
+  background: #fff;
+  color: #111;
+}
+
+.review-page-list-section {
+  padding: 48px 24px 48px;
+}
+
+.review-page-list-title {
+  width: 342px;
+  margin: 0;
+  color: #9f9fa9;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.review-page-sort-row {
+  height: 36px;
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.review-page-sort-row button {
+  height: 36px;
+  min-width: 73px;
+  padding: 0 18px;
+  border-radius: 100px;
+  background: #18181b;
+  color: #999;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.review-page-sort-row button:nth-child(3) {
+  min-width: 88px;
+}
+
+.review-page-sort-row button.is-active {
+  background: #27272a;
+  color: #fff;
+}
+
+.review-page-card-list {
+  width: 342px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review-page-card {
+  width: 342px;
+  height: 368.167px;
+  border: 0.667px solid #27272a;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.review-page-image-grid {
+  width: 342px;
+  height: 192px;
+  display: grid;
+  grid-template-columns: 171px 171px;
+}
+
+.review-page-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #18181b;
+}
+
+.review-page-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.review-page-image.is-style {
+  height: 158.25%;
+  position: absolute;
+  left: 0;
+  top: var(--style-crop-top, -13.5%);
+}
+
+.review-page-image-tag {
+  height: 24px;
+  position: absolute;
+  left: 5px;
+  top: 5.333px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background: rgb(0 0 0 / 70%);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.review-page-image-tag.is-style-tag {
+  width: 52px;
+}
+
+.review-page-image-tag.is-place-tag {
+  width: 40px;
+  border: 1px solid #fff;
+}
+
+.review-page-card-body {
+  height: 176.167px;
+  padding: 16px;
+}
+
+.review-page-tag-row {
+  height: 25.333px;
+  display: flex;
+  gap: 8px;
+}
+
+.review-page-tag-row span {
+  height: 25.333px;
+  padding: 5px 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.667px solid #27272a;
+  border-radius: 100px;
+  background: #18181b;
+  color: #fff;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.review-page-card h2 {
+  margin: 11px 0 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.review-page-card p {
+  width: 310px;
+  margin: 10px 0 0;
+  color: #9f9fa9;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  word-break: keep-all;
+}
+
+.review-page-card-meta {
+  width: 310px;
+  height: 16px;
+  margin-top: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #71717b;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.review-page-card-meta div,
+.review-page-card-meta span {
+  display: flex;
+  align-items: center;
+}
+
+.review-page-card-meta div {
+  gap: 12px;
+}
+
+.review-page-card-meta span {
+  gap: 4px;
+}
+
+.review-page-card-meta img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+}
+
+
+.review-page-icon-button:focus-visible,
+.review-page-filter-row button:focus-visible,
+.review-page-sort-row button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}

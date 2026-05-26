@@ -10,6 +10,16 @@ import AnalyzeScreen from './components/AnalyzeScreen.jsx'
 import AiChatScreen from './components/AiChatScreen.jsx'
 import ResultScreen from './components/ResultScreen.jsx'
 import DetailScreen from './components/DetailScreen.jsx'
+import ReservationScreen from './components/ReservationScreen.jsx'
+import ReservationCompleteScreen from './components/ReservationCompleteScreen.jsx'
+import MoodScreen from './components/MoodScreen.jsx'
+import ReviewPageScreen from './components/ReviewPageScreen.jsx'
+
+const placeNames = {
+  pipeground: '파이프그라운드 한남',
+  oasis: '오아시스 한남',
+  tatsu: '한남타츠',
+}
 
 function App() {
   const [showSplash, setShowSplash] = useState(true)
@@ -18,6 +28,10 @@ function App() {
   const [galleryPhotoUrl, setGalleryPhotoUrl] = useState('')
   const [analysisPhotoUrl, setAnalysisPhotoUrl] = useState('')
   const [detailPlaceId, setDetailPlaceId] = useState('pipeground')
+  const [reservationReturnScreen, setReservationReturnScreen] = useState('result')
+  const [reservationPlaceId, setReservationPlaceId] = useState('pipeground')
+  const [reservationDetails, setReservationDetails] = useState(null)
+  const [bookedTimesByPlace, setBookedTimesByPlace] = useState({})
 
   useEffect(() => {
     const splashTimer = window.setTimeout(() => {
@@ -62,6 +76,12 @@ function App() {
     setScreen('analyze')
   }
 
+  const openReservation = (returnScreen, placeId = 'pipeground') => {
+    setReservationReturnScreen(returnScreen)
+    setReservationPlaceId(placeId)
+    setScreen('reservation')
+  }
+
   return (
     <main className="app-stage">
       <div className="app-shell" aria-live="polite">
@@ -90,11 +110,13 @@ function App() {
             onBack={() => setScreen('analyze')}
             onOpenRecommendationList={() => setScreen('result')}
             onCameraAddress={() => setScreen('address')}
+            onReserve={(placeId) => openReservation('aichat', placeId)}
           />
         ) : screen === 'result' ? (
           <ResultScreen
             onBack={() => setScreen('aichat')}
             onCameraAddress={() => setScreen('address')}
+            onReserve={(placeId) => openReservation('result', placeId)}
             onOpenDetail={(placeId) => {
               setDetailPlaceId(placeId)
               setScreen('detail')
@@ -102,12 +124,68 @@ function App() {
           />
         ) : screen === 'detail' ? (
           <DetailScreen placeId={detailPlaceId} onBack={() => setScreen('result')} onCameraAddress={() => setScreen('address')} />
+        ) : screen === 'reservation' ? (
+          <ReservationScreen
+            placeName={placeNames[reservationPlaceId] || placeNames.pipeground}
+            bookedTimesByDate={bookedTimesByPlace[reservationPlaceId] || {}}
+            onBack={() => setScreen(reservationReturnScreen)}
+            onCameraAddress={() => setScreen('address')}
+            onConfirm={(details) => {
+              setReservationDetails(details)
+              setBookedTimesByPlace((current) => {
+                const dateKey = getDateKey(details.date)
+                const placeBookedTimes = current[reservationPlaceId] || {}
+                const dateBookedTimes = placeBookedTimes[dateKey] || []
+
+                if (dateBookedTimes.includes(details.time)) {
+                  return current
+                }
+
+                return {
+                  ...current,
+                  [reservationPlaceId]: {
+                    ...placeBookedTimes,
+                    [dateKey]: [...dateBookedTimes, details.time],
+                  },
+                }
+              })
+              setScreen('reservationComplete')
+            }}
+          />
+        ) : screen === 'reservationComplete' ? (
+          <ReservationCompleteScreen
+            reservation={reservationDetails}
+            onHome={() => setScreen('home')}
+            onCameraAddress={() => setScreen('address')}
+          />
+        ) : screen === 'mood' ? (
+          <MoodScreen
+            onBack={() => setScreen('home')}
+            onHome={() => setScreen('home')}
+            onCameraAddress={() => setScreen('address')}
+            onOpenReviewPage={() => setScreen('reviewpage')}
+          />
+        ) : screen === 'reviewpage' ? (
+          <ReviewPageScreen
+            onBack={() => setScreen('mood')}
+            onHome={() => setScreen('home')}
+            onCameraAddress={() => setScreen('address')}
+          />
         ) : (
-          <HomeScreen onAddress={() => setScreen('address')} />
+          <HomeScreen
+            onAddress={() => setScreen('address')}
+            onMood={() => setScreen('mood')}
+            onReviewPage={() => setScreen('reviewpage')}
+          />
         )}
       </div>
     </main>
   )
+}
+
+function getDateKey(date) {
+  const targetDate = new Date(date)
+  return `${targetDate.getFullYear()}-${targetDate.getMonth()}-${targetDate.getDate()}`
 }
 
 export default App

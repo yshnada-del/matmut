@@ -12,6 +12,9 @@ import './styles/analyze.css'
 import './styles/aichat.css'
 import './styles/result.css'
 import './styles/detail.css'
+import './styles/reservation.css'
+import './styles/mood.css'
+import './styles/reviewpage.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

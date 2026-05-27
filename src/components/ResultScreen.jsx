@@ -43,7 +43,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -78,7 +77,7 @@ const navItems = [
   },
 ]
 
-function ResultScreen({ onBack, onCameraAddress, onOpenDetail, onReserve }) {
+function ResultScreen({ onBack, onHome, onMyPage, onCameraAddress, onOpenDetail, onReserve, onSavePlace, savedPlaceIds = [] }) {
   return (
     <section className="result-screen" aria-label="추천 결과">
       <StatusBar />
@@ -123,7 +122,7 @@ function ResultScreen({ onBack, onCameraAddress, onOpenDetail, onReserve }) {
             <div className="result-card-window">
               <DragScrollRow className="result-card-row">
                 {resultPlaces.map((place) => (
-                  <PlaceCard place={place} key={place.id} onOpenDetail={onOpenDetail} onReserve={onReserve} />
+                  <PlaceCard place={place} key={place.id} onOpenDetail={onOpenDetail} onReserve={onReserve} onSavePlace={onSavePlace} isSaved={savedPlaceIds.includes(place.id)} />
                 ))}
               </DragScrollRow>
             </div>
@@ -131,13 +130,13 @@ function ResultScreen({ onBack, onCameraAddress, onOpenDetail, onReserve }) {
         </section>
       </main>
 
-      <ResultBottomNavigation onCameraAddress={onCameraAddress} />
+      <ResultBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
 }
 
-function PlaceCard({ place, onOpenDetail, onReserve }) {
+function PlaceCard({ place, onOpenDetail, onReserve, onSavePlace, isSaved }) {
   const stopCardDrag = (event) => {
     event.stopPropagation()
   }
@@ -152,6 +151,11 @@ function PlaceCard({ place, onOpenDetail, onReserve }) {
     onReserve?.(place.id)
   }
 
+  const handleSaveClick = (event) => {
+    event.stopPropagation()
+    onSavePlace?.(place)
+  }
+
   return (
     <article className="result-place-card">
       <img className="result-place-image" src={place.image} alt="" />
@@ -161,8 +165,8 @@ function PlaceCard({ place, onOpenDetail, onReserve }) {
             <h3>{place.name}</h3>
             <p>{place.category}</p>
           </div>
-          <button type="button" aria-label={`${place.name} 저장`}>
-            <img src="/assets/aichat-bookmark.svg" alt="" />
+          <button className={isSaved ? 'is-saved' : ''} type="button" aria-label={`${place.name} 저장`} aria-pressed={isSaved} onPointerDown={stopCardDrag} onClick={handleSaveClick}>
+            <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
           </button>
         </div>
 
@@ -265,7 +269,7 @@ function DragScrollRow({ children, className, ...props }) {
   )
 }
 
-function ResultBottomNavigation({ onCameraAddress }) {
+function ResultBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -275,6 +279,7 @@ function ResultBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

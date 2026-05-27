@@ -14,6 +14,8 @@ import ReservationScreen from './components/ReservationScreen.jsx'
 import ReservationCompleteScreen from './components/ReservationCompleteScreen.jsx'
 import MoodScreen from './components/MoodScreen.jsx'
 import ReviewPageScreen from './components/ReviewPageScreen.jsx'
+import RecommendationPageScreen from './components/RecommendationPageScreen.jsx'
+import MyPageScreen from './components/MyPageScreen.jsx'
 
 const placeNames = {
   pipeground: '파이프그라운드 한남',
@@ -31,6 +33,10 @@ function App() {
   const [reservationReturnScreen, setReservationReturnScreen] = useState('result')
   const [reservationPlaceId, setReservationPlaceId] = useState('pipeground')
   const [reservationDetails, setReservationDetails] = useState(null)
+  const [reservationHistory, setReservationHistory] = useState([])
+  const [savedPlaces, setSavedPlaces] = useState([])
+  const [savedRecommendations, setSavedRecommendations] = useState([])
+  const [myPageInitialSection, setMyPageInitialSection] = useState(null)
   const [bookedTimesByPlace, setBookedTimesByPlace] = useState({})
 
   useEffect(() => {
@@ -82,6 +88,35 @@ function App() {
     setScreen('reservation')
   }
 
+  const goHome = () => setScreen('home')
+  const goMyPage = (initialSection = null) => {
+    setMyPageInitialSection(typeof initialSection === 'string' ? initialSection : null)
+    setScreen('mypage')
+  }
+
+  const savePlace = (place) => {
+    setSavedPlaces((currentPlaces) => {
+      if (!place || currentPlaces.some((currentPlace) => currentPlace.id === place.id)) {
+        return currentPlaces
+      }
+
+      return [place, ...currentPlaces]
+    })
+  }
+
+  const saveRecommendation = (recommendation) => {
+    setSavedRecommendations((currentRecommendations) => {
+      if (!recommendation || currentRecommendations.some((currentRecommendation) => currentRecommendation.id === recommendation.id)) {
+        return currentRecommendations
+      }
+
+      return [recommendation, ...currentRecommendations]
+    })
+  }
+
+  const savedPlaceIds = savedPlaces.map((place) => place.id)
+  const savedRecommendationIds = savedRecommendations.map((recommendation) => recommendation.id)
+
   return (
     <main className="app-stage">
       <div className="app-shell" aria-live="polite">
@@ -92,10 +127,12 @@ function App() {
         ) : screen === 'auth' ? (
           <AuthScreen onLogin={() => setScreen('home')} />
         ) : screen === 'address' ? (
-          <AddressScreen onBack={() => setScreen('home')} onNext={() => setScreen('readyPhoto')} onCameraAddress={() => setScreen('address')} />
+          <AddressScreen onBack={goHome} onHome={goHome} onMyPage={goMyPage} onNext={() => setScreen('readyPhoto')} onCameraAddress={() => setScreen('address')} />
         ) : screen === 'readyPhoto' ? (
           <ReadyPhotoScreen
             onBack={() => setScreen('address')}
+            onHome={goHome}
+            onMyPage={goMyPage}
             onTakePhoto={openCamera}
             onGalleryPhoto={openGalleryPhoto}
             onCameraAddress={() => setScreen('address')}
@@ -103,35 +140,53 @@ function App() {
         ) : screen === 'photo' ? (
           <PhotoScreen mode={photoMode} photoUrl={galleryPhotoUrl} onGalleryPhoto={openGalleryPhoto} onComplete={completePhoto} />
         ) : screen === 'analyze' ? (
-          <AnalyzeScreen onBack={() => setScreen('photo')} onComplete={() => setScreen('aichat')} onCameraAddress={() => setScreen('address')} />
+          <AnalyzeScreen onBack={() => setScreen('photo')} onHome={goHome} onMyPage={goMyPage} onComplete={() => setScreen('aichat')} onCameraAddress={() => setScreen('address')} />
         ) : screen === 'aichat' ? (
           <AiChatScreen
             photoUrl={analysisPhotoUrl}
             onBack={() => setScreen('analyze')}
+            onHome={goHome}
+            onMyPage={goMyPage}
             onOpenRecommendationList={() => setScreen('result')}
             onCameraAddress={() => setScreen('address')}
             onReserve={(placeId) => openReservation('aichat', placeId)}
+            onSavePlace={savePlace}
+            savedPlaceIds={savedPlaceIds}
           />
         ) : screen === 'result' ? (
           <ResultScreen
             onBack={() => setScreen('aichat')}
+            onHome={goHome}
+            onMyPage={goMyPage}
             onCameraAddress={() => setScreen('address')}
             onReserve={(placeId) => openReservation('result', placeId)}
+            onSavePlace={savePlace}
+            savedPlaceIds={savedPlaceIds}
             onOpenDetail={(placeId) => {
               setDetailPlaceId(placeId)
               setScreen('detail')
             }}
           />
         ) : screen === 'detail' ? (
-          <DetailScreen placeId={detailPlaceId} onBack={() => setScreen('result')} onCameraAddress={() => setScreen('address')} />
+          <DetailScreen placeId={detailPlaceId} onBack={() => setScreen('result')} onHome={goHome} onMyPage={goMyPage} onCameraAddress={() => setScreen('address')} onSavePlace={savePlace} savedPlaceIds={savedPlaceIds} />
         ) : screen === 'reservation' ? (
           <ReservationScreen
             placeName={placeNames[reservationPlaceId] || placeNames.pipeground}
             bookedTimesByDate={bookedTimesByPlace[reservationPlaceId] || {}}
             onBack={() => setScreen(reservationReturnScreen)}
+            onHome={goHome}
+            onMyPage={goMyPage}
             onCameraAddress={() => setScreen('address')}
             onConfirm={(details) => {
               setReservationDetails(details)
+              setReservationHistory((currentHistory) => [
+                {
+                  id: `${reservationPlaceId}-${Date.now()}`,
+                  placeId: reservationPlaceId,
+                  ...details,
+                },
+                ...currentHistory,
+              ])
               setBookedTimesByPlace((current) => {
                 const dateKey = getDateKey(details.date)
                 const placeBookedTimes = current[reservationPlaceId] || {}
@@ -155,20 +210,47 @@ function App() {
         ) : screen === 'reservationComplete' ? (
           <ReservationCompleteScreen
             reservation={reservationDetails}
-            onHome={() => setScreen('home')}
+            onHome={goHome}
+            onMyPage={() => goMyPage()}
+            onReservationHistory={() => goMyPage('reservations')}
             onCameraAddress={() => setScreen('address')}
           />
         ) : screen === 'mood' ? (
           <MoodScreen
-            onBack={() => setScreen('home')}
-            onHome={() => setScreen('home')}
+            onBack={goHome}
+            onHome={goHome}
+            onMyPage={goMyPage}
             onCameraAddress={() => setScreen('address')}
             onOpenReviewPage={() => setScreen('reviewpage')}
+            onSavePlace={savePlace}
+            savedPlaceIds={savedPlaceIds}
           />
         ) : screen === 'reviewpage' ? (
           <ReviewPageScreen
             onBack={() => setScreen('mood')}
-            onHome={() => setScreen('home')}
+            onHome={goHome}
+            onMyPage={goMyPage}
+            onCameraAddress={() => setScreen('address')}
+            onSaveRecommendation={saveRecommendation}
+            savedRecommendationIds={savedRecommendationIds}
+          />
+        ) : screen === 'recommendationPage' ? (
+          <RecommendationPageScreen
+            onBack={goHome}
+            onHome={goHome}
+            onMyPage={goMyPage}
+            onCameraAddress={() => setScreen('address')}
+            onReserve={(placeId) => openReservation('recommendationPage', placeId)}
+            onSavePlace={savePlace}
+            savedPlaceIds={savedPlaceIds}
+          />
+        ) : screen === 'mypage' ? (
+          <MyPageScreen
+            savedPlaces={savedPlaces}
+            savedRecommendations={savedRecommendations}
+            reservations={reservationHistory}
+            initialSection={myPageInitialSection}
+            onHome={goHome}
             onCameraAddress={() => setScreen('address')}
           />
         ) : (
@@ -176,6 +258,8 @@ function App() {
             onAddress={() => setScreen('address')}
             onMood={() => setScreen('mood')}
             onReviewPage={() => setScreen('reviewpage')}
+            onRecommendationPage={() => setScreen('recommendationPage')}
+            onMyPage={goMyPage}
           />
         )}
       </div>

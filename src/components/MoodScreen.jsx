@@ -90,7 +90,7 @@ const navItems = [
   },
 ]
 
-function MoodScreen({ onBack, onHome, onCameraAddress, onOpenReviewPage }) {
+function MoodScreen({ onBack, onHome, onMyPage, onCameraAddress, onOpenReviewPage, onSavePlace, savedPlaceIds = [] }) {
   const [activeMood, setActiveMood] = useState('빈티지')
   const [activeSort, setActiveSort] = useState(sortOptions[0])
 
@@ -150,13 +150,13 @@ function MoodScreen({ onBack, onHome, onCameraAddress, onOpenReviewPage }) {
 
           <div className="mood-card-list">
             {moodPlaces.map((place) => (
-              <MoodPlaceCard place={place} key={place.id} onOpenReviewPage={onOpenReviewPage} />
+              <MoodPlaceCard place={place} key={place.id} onOpenReviewPage={onOpenReviewPage} onSavePlace={onSavePlace} isSaved={savedPlaceIds.includes(place.id)} />
             ))}
           </div>
         </section>
       </main>
 
-      <MoodBottomNavigation onHome={onHome} onCameraAddress={onCameraAddress} />
+      <MoodBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
@@ -221,7 +221,7 @@ function HorizontalScrollRow({ children, className }) {
   )
 }
 
-function MoodPlaceCard({ place, onOpenReviewPage }) {
+function MoodPlaceCard({ place, onOpenReviewPage, onSavePlace, isSaved }) {
   return (
     <article
       className="mood-place-card"
@@ -246,13 +246,16 @@ function MoodPlaceCard({ place, onOpenReviewPage }) {
             <p>{place.category}</p>
           </div>
           <button
+            className={isSaved ? 'is-saved' : ''}
             type="button"
             aria-label={`${place.name} 저장`}
+            aria-pressed={isSaved}
             onClick={(event) => {
               event.stopPropagation()
+              onSavePlace?.(place)
             }}
           >
-            <img src="/assets/aichat-bookmark.svg" alt="" />
+            <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
           </button>
         </div>
 
@@ -280,7 +283,7 @@ function MoodPlaceCard({ place, onOpenReviewPage }) {
   )
 }
 
-function MoodBottomNavigation({ onHome, onCameraAddress }) {
+function MoodBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -290,7 +293,7 @@ function MoodBottomNavigation({ onHome, onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
-            onClick={item.id === 'home' ? onHome : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

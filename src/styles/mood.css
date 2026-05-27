@@ -81,6 +81,10 @@
   height: 92px;
   padding: 24px;
   border-bottom: 0.667px solid #27272a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
   background: #18181b;
 }
 
@@ -98,7 +102,6 @@
 }
 
 .mood-intro-copy {
-  margin-top: 8px;
   color: #999;
   font-size: 14px;
   line-height: 1.4;

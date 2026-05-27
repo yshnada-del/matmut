@@ -23,7 +23,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -58,7 +57,7 @@ const navItems = [
   },
 ]
 
-function AnalyzeScreen({ onBack, onComplete, onCameraAddress }) {
+function AnalyzeScreen({ onBack, onHome, onMyPage, onComplete, onCameraAddress }) {
   const [progress, setProgress] = useState(33)
 
   useEffect(() => {
@@ -124,13 +123,13 @@ function AnalyzeScreen({ onBack, onComplete, onCameraAddress }) {
         </div>
       </main>
 
-      <AnalyzeBottomNavigation onCameraAddress={onCameraAddress} />
+      <AnalyzeBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
 }
 
-function AnalyzeBottomNavigation({ onCameraAddress }) {
+function AnalyzeBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -140,6 +139,7 @@ function AnalyzeBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

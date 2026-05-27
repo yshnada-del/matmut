@@ -5,7 +5,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -40,7 +39,7 @@ const navItems = [
   },
 ]
 
-function ReadyPhotoScreen({ onBack, onTakePhoto, onGalleryPhoto, onCameraAddress }) {
+function ReadyPhotoScreen({ onBack, onHome, onMyPage, onTakePhoto, onGalleryPhoto, onCameraAddress }) {
   const fileInputRef = useRef(null)
 
   const handleGalleryClick = () => {
@@ -114,13 +113,13 @@ function ReadyPhotoScreen({ onBack, onTakePhoto, onGalleryPhoto, onCameraAddress
         </div>
       </main>
 
-      <ReadyPhotoBottomNavigation onCameraAddress={onCameraAddress} />
+      <ReadyPhotoBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
 }
 
-function ReadyPhotoBottomNavigation({ onCameraAddress }) {
+function ReadyPhotoBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -130,6 +129,7 @@ function ReadyPhotoBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

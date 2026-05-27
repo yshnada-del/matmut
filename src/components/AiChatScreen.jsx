@@ -60,7 +60,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -95,7 +94,7 @@ const navItems = [
   },
 ]
 
-function AiChatScreen({ photoUrl, onBack, onOpenRecommendationList, onCameraAddress, onReserve }) {
+function AiChatScreen({ photoUrl, onBack, onHome, onMyPage, onOpenRecommendationList, onCameraAddress, onReserve, onSavePlace, savedPlaceIds = [] }) {
   const previewPhoto = photoUrl || '/assets/outfit.png'
   const [message, setMessage] = useState('')
   const [userMessages, setUserMessages] = useState([])
@@ -205,8 +204,18 @@ function AiChatScreen({ photoUrl, onBack, onOpenRecommendationList, onCameraAddr
                           <h2>{place.name}</h2>
                           <p>{place.category}</p>
                         </div>
-                        <button type="button" aria-label={`${place.name} 저장`}>
-                          <img src="/assets/aichat-bookmark.svg" alt="" />
+                        <button
+                          className={savedPlaceIds.includes(place.id) ? 'is-saved' : ''}
+                          type="button"
+                          aria-label={`${place.name} 저장`}
+                          aria-pressed={savedPlaceIds.includes(place.id)}
+                          onPointerDown={(event) => event.stopPropagation()}
+                          onClick={(event) => {
+                            event.stopPropagation()
+                            onSavePlace?.(place)
+                          }}
+                        >
+                          <img src={savedPlaceIds.includes(place.id) ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
                         </button>
                       </div>
                       <div className="aichat-place-meta">
@@ -294,7 +303,7 @@ function AiChatScreen({ photoUrl, onBack, onOpenRecommendationList, onCameraAddr
         </section>
       </main>
 
-      <AiChatBottomNavigation onCameraAddress={onCameraAddress} />
+      <AiChatBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
@@ -373,7 +382,7 @@ function DragScrollRow({ children, className, ...props }) {
   )
 }
 
-function AiChatBottomNavigation({ onCameraAddress }) {
+function AiChatBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -383,6 +392,7 @@ function AiChatBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

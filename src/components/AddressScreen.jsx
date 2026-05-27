@@ -4,7 +4,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -39,7 +38,7 @@ const navItems = [
   },
 ]
 
-function AddressScreen({ onBack, onNext, onCameraAddress }) {
+function AddressScreen({ onBack, onHome, onMyPage, onNext, onCameraAddress }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     onNext?.()
@@ -86,13 +85,13 @@ function AddressScreen({ onBack, onNext, onCameraAddress }) {
         </form>
       </main>
 
-      <AddressBottomNavigation onCameraAddress={onCameraAddress} />
+      <AddressBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
 }
 
-function AddressBottomNavigation({ onCameraAddress }) {
+function AddressBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -102,6 +101,7 @@ function AddressBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

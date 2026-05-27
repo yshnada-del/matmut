@@ -15,11 +15,11 @@ const reviews = [
     styleImage: '/assets/reviewpage-card-01-style.png',
     placeImage: '/assets/reviewpage-card-01-place.png',
     styleCropTop: '-13.5%',
-    copy: '편안한 스타일로 가기 좋은 곳. 분위기도 좋고 사진도 잘 나와요',
+    copy: '세련된 스타일로 갈 때 딱 좋은 곳. 분위기도 좋고 음식도 훌륭해요',
   },
   {
     id: 'monks-butcher',
-    placeName: '몽크스부처 청담',
+    placeName: '몽크스부처 도산',
     styles: ['캐주얼', '스트릿'],
     rating: '4.7',
     area: '청담',
@@ -27,11 +27,11 @@ const reviews = [
     styleImage: '/assets/reviewpage-card-02-style.png',
     placeImage: '/assets/reviewpage-card-02-place.png',
     styleCropTop: '-35.11%',
-    copy: '시크한 스트릿 룩에 잘 어울리는 곳. 분위기가 세련되고 사진도 잘 나와요.',
+    copy: '시크한 스타일로 갈 때 잘 어울리는 곳. 분위기가 세련되고 사진도 잘 나와요.',
   },
   {
     id: 'british-shop',
-    placeName: '브리티시샵 성수',
+    placeName: '브리비트 성수',
     styles: ['캐주얼', '빈티지'],
     rating: '4.7',
     area: '성수',
@@ -39,11 +39,11 @@ const reviews = [
     styleImage: '/assets/reviewpage-card-03-style.png',
     placeImage: '/assets/reviewpage-card-03-place.png',
     styleCropTop: '-23.85%',
-    copy: '빈티지한 데님룩과 가기 좋은 곳. 가격도 감각적이고 후식도 깔끔해요.',
+    copy: '빈티지한 데님룩으로 가기 좋은 곳. 공간도 감각적이고 음식도 깔끔해요.',
   },
   {
     id: 'yeonnam-doma',
-    placeName: '연남도마',
+    placeName: '연남토마',
     styles: ['캐주얼', '모던'],
     rating: '4.7',
     area: '연남',
@@ -51,7 +51,7 @@ const reviews = [
     styleImage: '/assets/reviewpage-card-04-style.png',
     placeImage: '/assets/reviewpage-card-04-place.png',
     styleCropTop: '-24.35%',
-    copy: '무난한 니트룩에 잘 맞는 곳. 부담 없이 가기 좋고 메뉴도 무난해요.',
+    copy: '편안한 니트룩에 잘 맞는 곳. 부담 없이 가기 좋고 메뉴도 무난해요.',
   },
   {
     id: 'sogum-deli',
@@ -63,7 +63,7 @@ const reviews = [
     styleImage: '/assets/reviewpage-card-05-style.png',
     placeImage: '/assets/reviewpage-card-05-place.png',
     styleCropTop: '-13.5%',
-    copy: '빈티지한 스타일로 가면 더 좋은 곳. 가볍게 먹기 좋고 분위기도 좋아요.',
+    copy: '빈티지한 스타일로 가면 딱 좋은 곳. 가볍게 먹기 좋고 분위기도 좋아요.',
   },
   {
     id: 'mi-piace',
@@ -83,7 +83,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -118,9 +117,10 @@ const navItems = [
   },
 ]
 
-function ReviewPageScreen({ onBack, onHome, onCameraAddress }) {
+function ReviewPageScreen({ onBack, onHome, onMyPage, onCameraAddress, onSaveRecommendation, savedRecommendationIds = [] }) {
   const [activeMood, setActiveMood] = useState('캐주얼')
   const [activeSort, setActiveSort] = useState(sortOptions[0])
+  const visibleReviews = reviews.filter((review) => review.styles.includes(activeMood))
 
   return (
     <section className="review-page-screen" aria-label="비슷한 스타일 리뷰">
@@ -151,7 +151,13 @@ function ReviewPageScreen({ onBack, onHome, onCameraAddress }) {
                 className={filter === activeMood ? 'is-active' : ''}
                 type="button"
                 key={filter}
-                onClick={() => setActiveMood(filter)}
+                onClick={(event) => {
+                  if (event.currentTarget.closest('.review-page-filter-row')?.dataset.dragged === 'true') {
+                    return
+                  }
+
+                  setActiveMood(filter)
+                }}
               >
                 {filter}
               </button>
@@ -160,7 +166,7 @@ function ReviewPageScreen({ onBack, onHome, onCameraAddress }) {
         </section>
 
         <section className="review-page-list-section" aria-labelledby="review-page-list-title">
-          <p className="review-page-list-title" id="review-page-list-title">6개의 리뷰</p>
+          <p className="review-page-list-title" id="review-page-list-title">{visibleReviews.length}개의 리뷰</p>
           <div className="review-page-sort-row" aria-label="정렬">
             {sortOptions.map((option) => (
               <button
@@ -175,14 +181,14 @@ function ReviewPageScreen({ onBack, onHome, onCameraAddress }) {
           </div>
 
           <div className="review-page-card-list">
-            {reviews.map((review) => (
-              <ReviewCard review={review} key={review.id} />
+            {visibleReviews.map((review) => (
+              <ReviewCard review={review} key={review.id} onSaveRecommendation={onSaveRecommendation} isSaved={savedRecommendationIds.includes(review.id)} />
             ))}
           </div>
         </section>
       </main>
 
-      <ReviewBottomNavigation onHome={onHome} onCameraAddress={onCameraAddress} />
+      <ReviewBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
@@ -192,6 +198,7 @@ function HorizontalScrollRow({ children, className }) {
   const rowRef = useRef(null)
   const dragState = useRef({
     isDragging: false,
+    hasDragged: false,
     startX: 0,
     scrollLeft: 0,
   })
@@ -204,10 +211,11 @@ function HorizontalScrollRow({ children, className }) {
 
     dragState.current = {
       isDragging: true,
+      hasDragged: false,
       startX: event.clientX,
       scrollLeft: row.scrollLeft,
     }
-    row.setPointerCapture?.(event.pointerId)
+    delete row.dataset.dragged
     row.classList.add('is-dragging')
   }
 
@@ -218,7 +226,15 @@ function HorizontalScrollRow({ children, className }) {
     }
 
     const deltaX = event.clientX - dragState.current.startX
-    row.scrollLeft = dragState.current.scrollLeft - deltaX
+
+    if (Math.abs(deltaX) > 6) {
+      dragState.current.hasDragged = true
+      row.dataset.dragged = 'true'
+    }
+
+    if (dragState.current.hasDragged) {
+      row.scrollLeft = dragState.current.scrollLeft - deltaX
+    }
   }
 
   const stopDragging = (event) => {
@@ -228,8 +244,15 @@ function HorizontalScrollRow({ children, className }) {
     }
 
     dragState.current.isDragging = false
-    row.releasePointerCapture?.(event.pointerId)
     row.classList.remove('is-dragging')
+
+    if (dragState.current.hasDragged) {
+      window.setTimeout(() => {
+        delete row.dataset.dragged
+      }, 120)
+    } else {
+      delete row.dataset.dragged
+    }
   }
 
   return (
@@ -247,7 +270,9 @@ function HorizontalScrollRow({ children, className }) {
   )
 }
 
-function ReviewCard({ review }) {
+function ReviewCard({ review, onSaveRecommendation, isSaved }) {
+  const copyLines = review.copy.split(' 곳. ')
+
   return (
     <article className="review-page-card">
       <div className="review-page-image-grid">
@@ -268,8 +293,38 @@ function ReviewCard({ review }) {
           ))}
         </div>
 
-        <h2>{review.placeName}</h2>
-        <p>"{review.copy}"</p>
+        <div className="review-page-card-heading">
+          <h2>{review.placeName}</h2>
+          <button
+            className={isSaved ? 'is-saved' : ''}
+            type="button"
+            aria-label={`${review.placeName} 추천 기록 저장`}
+            aria-pressed={isSaved}
+            onClick={() => {
+              onSaveRecommendation?.({
+                id: review.id,
+                title: `${review.styles.join(' · ')} 스타일`,
+                image: review.styleImage,
+                styles: review.styles,
+                copy: review.copy,
+                area: review.area,
+                savedAt: new Date().toISOString(),
+              })
+            }}
+          >
+            <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/home-nav-save.svg'} alt="" />
+          </button>
+        </div>
+        <p>
+          "{copyLines[0]} 곳.
+          {copyLines[1] ? (
+            <>
+              <br />
+              {copyLines[1]}
+            </>
+          ) : null}
+          "
+        </p>
 
         <div className="review-page-card-meta">
           <div>
@@ -292,7 +347,7 @@ function ReviewCard({ review }) {
   )
 }
 
-function ReviewBottomNavigation({ onHome, onCameraAddress }) {
+function ReviewBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -302,7 +357,7 @@ function ReviewBottomNavigation({ onHome, onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
-            onClick={item.id === 'home' ? onHome : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

@@ -4,7 +4,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -39,7 +38,7 @@ const navItems = [
   },
 ]
 
-function ReservationCompleteScreen({ reservation, onHome, onCameraAddress }) {
+function ReservationCompleteScreen({ reservation, onHome, onMyPage, onReservationHistory, onCameraAddress }) {
   const fallbackDate = new Date()
   const date = reservation?.date ? new Date(reservation.date) : fallbackDate
   const placeName = reservation?.placeName || '파이프그라운드 한남'
@@ -81,7 +80,7 @@ function ReservationCompleteScreen({ reservation, onHome, onCameraAddress }) {
         </section>
 
         <section className="reservation-complete-actions">
-          <button className="reservation-history-button" type="button">
+          <button className="reservation-history-button" type="button" onClick={onReservationHistory || onMyPage}>
             <img className="reservation-action-icon" src="/assets/reservation-history.svg" alt="" />
             예약 내역 보기
           </button>
@@ -92,7 +91,7 @@ function ReservationCompleteScreen({ reservation, onHome, onCameraAddress }) {
         </section>
       </main>
 
-      <ReservationBottomNavigation onCameraAddress={onCameraAddress} />
+      <ReservationBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
@@ -110,7 +109,7 @@ function ReservationInfoItem({ icon, label, value }) {
   )
 }
 
-function ReservationBottomNavigation({ onCameraAddress }) {
+function ReservationBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -120,6 +119,7 @@ function ReservationBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

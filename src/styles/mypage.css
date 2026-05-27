@@ -1,0 +1,494 @@
+.mypage-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+}
+
+.mypage-header {
+  height: 68.667px;
+  padding: 16.333px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+}
+
+.mypage-back,
+.mypage-menu {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.mypage-back img {
+  position: absolute;
+  pointer-events: none;
+}
+
+.mypage-back-head {
+  width: 7.5px;
+  height: 13.333px;
+  left: 8px;
+  top: 11.333px;
+}
+
+.mypage-back-line {
+  width: 13.333px;
+  height: 1.667px;
+  left: 8px;
+  top: 17.167px;
+}
+
+.mypage-menu span {
+  width: 13.333px;
+  height: 1.667px;
+  position: absolute;
+  left: 8px;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.mypage-menu span:nth-child(1) {
+  top: 11px;
+}
+
+.mypage-menu span:nth-child(2) {
+  top: 17.167px;
+}
+
+.mypage-menu span:nth-child(3) {
+  top: 23.333px;
+}
+
+.mypage-main {
+  flex: 1;
+  min-height: 0;
+  padding: 48px 24px 92px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.mypage-main::-webkit-scrollbar {
+  display: none;
+}
+
+.mypage-profile {
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 16px;
+}
+
+.mypage-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #202124;
+}
+
+.mypage-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mypage-profile-copy h1,
+.mypage-profile-copy p {
+  margin: 0;
+}
+
+.mypage-profile-copy h1 {
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  font-weight: 500;
+}
+
+.mypage-profile-copy p {
+  margin-top: 4px;
+  color: #9a9aa3;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+
+.mypage-settings-button {
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.mypage-settings-button img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.mypage-summary {
+  margin-top: 64.667px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mypage-summary div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.mypage-summary strong {
+  color: #fff;
+  font-family: Inter, Pretendard, sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+.mypage-summary span {
+  color: #71717b;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.24px;
+  white-space: nowrap;
+}
+
+.mypage-section {
+  margin-top: 48px;
+}
+
+.mypage-section-heading {
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mypage-section-heading h2,
+.mypage-setting-section h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.mypage-section-heading button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #9f9fa9;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+  font-weight: 500;
+}
+
+.mypage-card-list,
+.mypage-reservation-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.mypage-place-card,
+.mypage-history-card {
+  min-height: 112px;
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.mypage-place-image {
+  width: 112px;
+  height: 112px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #1c1d20;
+}
+
+.mypage-place-copy,
+.mypage-history-card > div {
+  min-width: 0;
+}
+
+.mypage-place-card h3,
+.mypage-history-card h3,
+.mypage-reservation-card h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.mypage-reservation-card h3 {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.32px;
+}
+
+.mypage-place-card p {
+  margin: 6px 0 0;
+  color: #7d7d87;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.mypage-place-meta {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #a1a1aa;
+  font-size: 12px;
+  line-height: 17px;
+  white-space: nowrap;
+}
+
+.mypage-place-meta span {
+  min-width: 0;
+}
+
+.mypage-place-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #d4d4d8;
+  white-space: nowrap;
+}
+
+.mypage-place-rating img {
+  width: 14px;
+  height: 14px;
+}
+
+.mypage-place-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #8b8b95;
+}
+
+.mypage-place-location img {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+.mypage-place-card em {
+  color: #8b8b95;
+  font-style: normal;
+}
+
+.mypage-place-card small,
+.mypage-history-card small {
+  margin-top: 6px;
+  display: block;
+  color: #70707a;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.mypage-history-card {
+  grid-template-columns: 76px minmax(0, 1fr);
+}
+
+.mypage-history-image {
+  width: 76px;
+  height: 96px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #1c1d20;
+}
+
+.mypage-replay-button {
+  width: 100%;
+  height: 32px;
+  margin-top: 18px;
+  border: 1px solid #2d2d32;
+  border-radius: 2px;
+  background: transparent;
+  color: #fff;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.mypage-reservation-card {
+  padding: 0 0 16px;
+  border-bottom: 1px solid #27272a;
+}
+
+.mypage-reservation-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mypage-reservation-card span {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9a9aa3;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+}
+
+.mypage-reservation-card h3 + span {
+  margin-top: 8px;
+}
+
+.mypage-reservation-card span img {
+  width: 14px;
+  height: 14px;
+  filter: invert(1);
+  opacity: 0.68;
+}
+
+.mypage-reservation-card strong {
+  min-width: 62px;
+  height: 27px;
+  padding: 0 9px;
+  border: 1px solid #064e3b;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #00e676;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.24px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.mypage-reservation-card strong.is-expired {
+  border-color: #27272a;
+  background: #18181b;
+  color: #9f9fa9;
+}
+
+.mypage-reservation-actions {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.mypage-reservation-actions button {
+  height: 36px;
+  border: 1px solid #3a3a42;
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.28px;
+  font-weight: 500;
+}
+
+.mypage-empty-card,
+.mypage-visit-empty {
+  min-height: 96px;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #777781;
+  text-align: center;
+}
+
+.mypage-empty-card strong,
+.mypage-visit-empty strong {
+  color: #8f8f98;
+  font-size: 10px;
+  line-height: 15px;
+  font-weight: 500;
+}
+
+.mypage-empty-card span,
+.mypage-visit-empty span {
+  color: #666670;
+  font-size: 8px;
+  line-height: 12px;
+}
+
+.mypage-visit-empty img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.46;
+  filter: grayscale(1);
+}
+
+.mypage-setting-section {
+  padding-bottom: 20px;
+}
+
+.mypage-setting-section h2 {
+  margin-bottom: 14px;
+}
+
+.mypage-setting-button,
+.mypage-logout {
+  width: 100%;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #151518;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  color: #fff;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.mypage-setting-button span:last-child {
+  color: #777781;
+  font-size: 16px;
+}
+
+.mypage-logout {
+  justify-content: flex-start;
+  color: #ff4a4a;
+}
+
+.mypage-back:focus-visible,
+.mypage-menu:focus-visible,
+.mypage-settings-button:focus-visible,
+.mypage-section-heading button:focus-visible,
+.mypage-replay-button:focus-visible,
+.mypage-reservation-actions button:focus-visible,
+.mypage-setting-button:focus-visible,
+.mypage-logout:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}

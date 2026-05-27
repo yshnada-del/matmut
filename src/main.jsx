@@ -15,6 +15,8 @@ import './styles/detail.css'
 import './styles/reservation.css'
 import './styles/mood.css'
 import './styles/reviewpage.css'
+import './styles/recommendationpage.css'
+import './styles/mypage.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

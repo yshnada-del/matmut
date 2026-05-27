@@ -234,7 +234,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -1155,7 +1154,7 @@ function ReviewSection({ data, rating }) {
   )
 }
 
-function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
+function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCameraAddress, onSavePlace, savedPlaceIds = [] }) {
   const [isHoursOpen, setIsHoursOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('info')
   const [activeMenuCategory, setActiveMenuCategory] = useState('sashimi')
@@ -1173,9 +1172,24 @@ function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
   const activePhotoSets = placePhotoSets[placeId] || placePhotoSets.pipeground
   const activePhotoSet = activePhotoSets[activePhotoCategory] || activePhotoSets.all
   const activeReviewData = placeReviewData[placeId] || placeReviewData.pipeground
+  const isSaved = savedPlaceIds.includes(placeId)
   const effectiveMenuCategory = activeMenuData.categories.some((category) => category.id === activeMenuCategory)
     ? activeMenuCategory
     : activeMenuData.categories[0].id
+
+  const saveCurrentPlace = () => {
+    onSavePlace?.({
+      id: placeId,
+      name: place.name,
+      category: '레스토랑',
+      image: place.mainImage,
+      rating: place.rating,
+      reviews: place.reviews,
+      phone: place.phone,
+      area: '한남',
+      copy: '상세페이지에서 저장한 장소예요.',
+    })
+  }
 
   const handleMenuCategoryClick = (categoryId, clickedButton) => {
     if (menuCategoryDragState.current.hasDragged) {
@@ -1280,8 +1294,8 @@ function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
               <h1 id="detail-title">{place.name}</h1>
               <p>{place.description}</p>
             </div>
-            <button className="detail-bookmark" type="button" aria-label="저장">
-              <img src="/assets/aichat-bookmark.svg" alt="" />
+            <button className={`detail-bookmark ${isSaved ? 'is-saved' : ''}`} type="button" aria-label="저장" aria-pressed={isSaved} onClick={saveCurrentPlace}>
+              <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
             </button>
           </div>
 
@@ -1461,8 +1475,8 @@ function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
             </section>
 
             <div className="detail-action-bar">
-              <button className="detail-save-button" type="button" aria-label="저장">
-                <img src="/assets/detail-save-bookmark.svg" alt="" />
+              <button className={`detail-save-button ${isSaved ? 'is-saved' : ''}`} type="button" aria-label="저장" aria-pressed={isSaved} onClick={saveCurrentPlace}>
+                <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/detail-save-bookmark.svg'} alt="" />
               </button>
               <button className="detail-reserve-button" type="button">
                 <img src="/assets/detail-calendar.svg" alt="" />
@@ -1473,13 +1487,13 @@ function DetailScreen({ placeId = 'pipeground', onBack, onCameraAddress }) {
         )}
       </main>
 
-      <DetailBottomNavigation onCameraAddress={onCameraAddress} />
+      <DetailBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
 }
 
-function DetailBottomNavigation({ onCameraAddress }) {
+function DetailBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -1489,6 +1503,7 @@ function DetailBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

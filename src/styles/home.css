@@ -444,6 +444,14 @@
   position: absolute;
 }
 
+.home-nav-item:not(.is-active) .home-nav-icon {
+  opacity: 0.42;
+}
+
+.home-nav-item.is-active .home-nav-icon {
+  opacity: 1;
+}
+
 .home-nav-icon > img:not([class]) {
   width: 12.833px;
   height: 16.5px;

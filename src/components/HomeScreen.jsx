@@ -115,7 +115,7 @@ const navItems = [
   },
 ]
 
-function HomeScreen({ onAddress, onMood, onReviewPage }) {
+function HomeScreen({ onAddress, onMood, onReviewPage, onRecommendationPage, onMyPage }) {
   const [activePreviewTab, setActivePreviewTab] = useState(previewTabs[0].id)
   const activePreviewIndex = previewTabs.findIndex((tab) => tab.id === activePreviewTab)
   const openActivePreview = activePreviewTab === 'similar' ? onReviewPage : onMood
@@ -218,7 +218,9 @@ function HomeScreen({ onAddress, onMood, onReviewPage }) {
         <section className="home-recommendations" aria-labelledby="recommendation-title">
           <div className="home-section-title">
             <h2 id="recommendation-title">다양한 추천을 받아봐요</h2>
-            <button type="button">View all</button>
+            <button type="button" onClick={onRecommendationPage}>
+              View all
+            </button>
           </div>
 
           <DragScrollRow className="home-recommendation-row" aria-label="다양한 추천 미리보기">
@@ -232,7 +234,7 @@ function HomeScreen({ onAddress, onMood, onReviewPage }) {
         </section>
       </main>
 
-      <BottomNavigation onCameraAddress={onAddress} onMood={onMood} />
+      <BottomNavigation onCameraAddress={onAddress} onMood={onMood} onMyPage={onMyPage} />
       <HomeIndicator />
     </section>
   )
@@ -303,7 +305,7 @@ function DragScrollRow({ children, className, ...props }) {
   )
 }
 
-function BottomNavigation({ onCameraAddress, onMood }) {
+function BottomNavigation({ onCameraAddress, onMood, onMyPage }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -313,7 +315,7 @@ function BottomNavigation({ onCameraAddress, onMood }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
-            onClick={item.id === 'search' ? onMood : undefined}
+            onClick={item.id === 'search' ? onMood : item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

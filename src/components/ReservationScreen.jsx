@@ -44,7 +44,6 @@ const navItems = [
   {
     id: 'home',
     label: '홈',
-    active: true,
     icon: (
       <>
         <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
@@ -79,7 +78,7 @@ const navItems = [
   },
 ]
 
-function ReservationScreen({ placeName = '파이프그라운드 한남', bookedTimesByDate = {}, onBack, onCameraAddress, onConfirm }) {
+function ReservationScreen({ placeName = '파이프그라운드 한남', bookedTimesByDate = {}, onBack, onHome, onMyPage, onCameraAddress, onConfirm }) {
   const today = useMemo(() => new Date(), [])
   const currentMonth = useMemo(() => new Date(today.getFullYear(), today.getMonth(), 1), [today])
   const [people, setPeople] = useState('2명')
@@ -226,7 +225,7 @@ function ReservationScreen({ placeName = '파이프그라운드 한남', bookedT
         </section>
       </main>
 
-      <ReservationBottomNavigation onCameraAddress={onCameraAddress} />
+      <ReservationBottomNavigation onHome={onHome} onMyPage={onMyPage} onCameraAddress={onCameraAddress} />
       <HomeIndicator />
     </section>
   )
@@ -343,7 +342,7 @@ function ReservationLabel({ children, icon, id }) {
   )
 }
 
-function ReservationBottomNavigation({ onCameraAddress }) {
+function ReservationBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
   return (
     <nav className="home-bottom-nav" aria-label="하단 메뉴">
       <div className="home-nav-items">
@@ -353,6 +352,7 @@ function ReservationBottomNavigation({ onCameraAddress }) {
             key={item.id}
             type="button"
             aria-current={item.active ? 'page' : undefined}
+            onClick={item.id === 'home' ? onHome : item.id === 'save' || item.id === 'profile' ? onMyPage : undefined}
           >
             <span className="home-nav-icon">{item.icon}</span>
             <span>{item.label}</span>

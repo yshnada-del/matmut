@@ -1,4 +1,0 @@
-﻿event: message
-data: {"result":{"content":[{"type":"text","text":"The MCP server tools are only available for design, FigJam, and Make files."}],"isError":true},"jsonrpc":"2.0","id":24}
-
-

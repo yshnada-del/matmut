@@ -78,7 +78,7 @@ function App() {
 
   const completePhoto = (photoPayload) => {
     console.log('photo complete', photoPayload)
-    setAnalysisPhotoUrl(photoPayload?.src || galleryPhotoUrl || '/assets/outfit.png')
+    setAnalysisPhotoUrl(photoPayload?.src || galleryPhotoUrl || `${import.meta.env.BASE_URL}assets/outfit.png`)
     setScreen('analyze')
   }
 

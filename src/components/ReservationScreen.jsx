@@ -46,23 +46,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -71,8 +71,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -120,8 +120,8 @@ function ReservationScreen({ placeName = '파이프그라운드 한남', bookedT
 
       <header className="reservation-header">
         <button className="reservation-icon-button reservation-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="reservation-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="reservation-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="reservation-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="reservation-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="reservation-icon-button reservation-menu" type="button" aria-label="메뉴">
           <span />
@@ -132,7 +132,7 @@ function ReservationScreen({ placeName = '파이프그라운드 한남', bookedT
 
       <main className="reservation-main">
         <section className="reservation-section is-people" aria-labelledby="reservation-people-title">
-          <ReservationLabel id="reservation-people-title" icon="/assets/reservation-people.svg">
+          <ReservationLabel id="reservation-people-title" icon={`${import.meta.env.BASE_URL}assets/reservation-people.svg`}>
             인원수
           </ReservationLabel>
           <div className="reservation-people-grid">
@@ -150,7 +150,7 @@ function ReservationScreen({ placeName = '파이프그라운드 한남', bookedT
         </section>
 
         <section className="reservation-section is-date" aria-labelledby="reservation-date-title">
-          <ReservationLabel id="reservation-date-title" icon="/assets/reservation-date.svg">
+          <ReservationLabel id="reservation-date-title" icon={`${import.meta.env.BASE_URL}assets/reservation-date.svg`}>
             날짜
           </ReservationLabel>
           <div className={`reservation-calendar ${isCalendarOpen ? 'is-open' : ''}`}>
@@ -183,7 +183,7 @@ function ReservationScreen({ placeName = '파이프그라운드 한남', bookedT
         </section>
 
         <section className="reservation-section is-time" aria-labelledby="reservation-time-title">
-          <ReservationLabel id="reservation-time-title" icon="/assets/reservation-time.svg">
+          <ReservationLabel id="reservation-time-title" icon={`${import.meta.env.BASE_URL}assets/reservation-time.svg`}>
             시간
           </ReservationLabel>
           <div className="reservation-time-grid">
@@ -362,7 +362,7 @@ function ReservationBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

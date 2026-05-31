@@ -7,23 +7,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -33,8 +33,8 @@ const navItems = [
     active: true,
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -61,8 +61,8 @@ function MyPageScreen({ savedPlaces = [], savedRecommendations = [], reservation
 
       <header className="mypage-header">
         <button className="mypage-back" type="button" aria-label="뒤로가기" onClick={onHome}>
-          <img className="mypage-back-head" src="/assets/mypage-back-head-figma.svg" alt="" />
-          <img className="mypage-back-line" src="/assets/mypage-back-line-figma.svg" alt="" />
+          <img className="mypage-back-head" src={`${import.meta.env.BASE_URL}assets/mypage-back-head-figma.svg`} alt="" />
+          <img className="mypage-back-line" src={`${import.meta.env.BASE_URL}assets/mypage-back-line-figma.svg`} alt="" />
         </button>
         <button className="mypage-menu" type="button" aria-label="메뉴">
           <span />
@@ -74,14 +74,14 @@ function MyPageScreen({ savedPlaces = [], savedRecommendations = [], reservation
       <main className="mypage-main">
         <section className="mypage-profile" aria-label="프로필">
           <div className="mypage-avatar" aria-hidden="true">
-            <img src="/assets/mypage-profile-figma.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/mypage-profile-figma.png`} alt="" />
           </div>
           <div className="mypage-profile-copy">
             <h1>유민주</h1>
             <p>오늘도 멋진 하루 보내세요</p>
           </div>
           <button className="mypage-settings-button" type="button" aria-label="설정">
-            <img src="/assets/mypage-settings.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/mypage-settings.svg`} alt="" />
           </button>
         </section>
 
@@ -135,7 +135,7 @@ function MyPageScreen({ savedPlaces = [], savedRecommendations = [], reservation
 
         <MypageSection title="후기 / 방문 기록">
           <div className="mypage-visit-empty">
-            <img src="/assets/review-star.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/review-star.svg`} alt="" />
             <strong>아직 작성한 후기가 없어요</strong>
             <span>방문한 장소에 후기를 남겨보세요</span>
           </div>
@@ -191,12 +191,12 @@ function SavedPlaceCard({ place }) {
         <p>{place.category || place.type || '장소'}</p>
         <div className="mypage-place-meta">
           <span className="mypage-place-rating">
-            <img src="/assets/aichat-star.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-star.svg`} alt="" />
             {place.rating || '4.8'}
           </span>
           <span>{place.price || '35,000원대'}</span>
           <span className="mypage-place-location">
-            <img src="/assets/review-location.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/review-location.svg`} alt="" />
             {locationLabel}
           </span>
         </div>
@@ -266,11 +266,11 @@ function ReservationCard({ reservation }) {
         <div>
           <h3>{reservation.placeName || '예약 장소'}</h3>
           <span>
-            <img src="/assets/reservation-calendar-open.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/reservation-calendar-open.svg`} alt="" />
             {formatReservationDate(reservation.date)}
           </span>
           <span>
-            <img src="/assets/reservation-time.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/reservation-time.svg`} alt="" />
             {reservation.time || '시간 미정'} · {reservation.people || '2명'}
           </span>
         </div>
@@ -322,7 +322,7 @@ function MyPageBottomNavigation({ onHome, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

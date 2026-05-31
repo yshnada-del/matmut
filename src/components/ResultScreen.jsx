@@ -8,7 +8,7 @@ const resultPlaces = [
     id: 'pipeground',
     name: '파이프그라운드 한남',
     category: '피자',
-    image: '/assets/aichat-place-pipeground.png',
+    image: `${import.meta.env.BASE_URL}assets/aichat-place-pipeground.png`,
     rating: '4.7',
     reviews: '6,802',
     price: '20,000~30,000원대',
@@ -19,7 +19,7 @@ const resultPlaces = [
     id: 'oasis',
     name: '오아시스 한남',
     category: '브런치',
-    image: '/assets/aichat-place-oasis.png',
+    image: `${import.meta.env.BASE_URL}assets/aichat-place-oasis.png`,
     rating: '4.0',
     reviews: '3,252',
     price: '20,000~30,000원대',
@@ -30,7 +30,7 @@ const resultPlaces = [
     id: 'tatsu',
     name: '한남타츠',
     category: '이자카야',
-    image: '/assets/aichat-place-tatsu.png',
+    image: `${import.meta.env.BASE_URL}assets/aichat-place-tatsu.png`,
     rating: '4.3',
     reviews: '1,632',
     price: '50,000~70,000원대',
@@ -45,23 +45,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -70,8 +70,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -84,8 +84,8 @@ function ResultScreen({ onBack, onHome, onMyPage, onCameraAddress, onOpenDetail,
 
       <header className="result-header">
         <button className="result-icon-button result-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="result-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="result-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="result-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="result-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="result-icon-button result-menu" type="button" aria-label="메뉴">
           <span />
@@ -112,7 +112,7 @@ function ResultScreen({ onBack, onHome, onMyPage, onCameraAddress, onOpenDetail,
           <div className="result-section-heading">
             <h2 id="result-place-title">추천 장소</h2>
             <button type="button">
-              <img src="/assets/result-refresh.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/result-refresh.svg`} alt="" />
               다시 추천받기
             </button>
           </div>
@@ -166,26 +166,26 @@ function PlaceCard({ place, onOpenDetail, onReserve, onSavePlace, isSaved }) {
             <p>{place.category}</p>
           </div>
           <button className={isSaved ? 'is-saved' : ''} type="button" aria-label={`${place.name} 저장`} aria-pressed={isSaved} onPointerDown={stopCardDrag} onClick={handleSaveClick}>
-            <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
+            <img src={isSaved ? `${import.meta.env.BASE_URL}assets/bookmark-filled.svg` : `${import.meta.env.BASE_URL}assets/aichat-bookmark.svg`} alt="" />
           </button>
         </div>
 
         <div className="result-place-meta">
           <span>
-            <img src="/assets/aichat-star.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-star.svg`} alt="" />
             <strong>{place.rating}</strong>
             <em>({place.reviews})</em>
           </span>
           <span>
-            <img src="/assets/aichat-price.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-price.svg`} alt="" />
             {place.price}
           </span>
           <span>
-            <img src="/assets/aichat-phone.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-phone.svg`} alt="" />
             {place.phone}
           </span>
           <span>
-            <img src="/assets/aichat-clock.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-clock.svg`} alt="" />
             {place.distance}
           </span>
         </div>
@@ -195,7 +195,7 @@ function PlaceCard({ place, onOpenDetail, onReserve, onSavePlace, isSaved }) {
             상세 정보
           </button>
           <button className="result-reserve-button" type="button" onPointerDown={stopCardDrag} onClick={handleReserveClick}>
-            <img src="/assets/result-calendar.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/result-calendar.svg`} alt="" />
             예약하기
           </button>
         </div>
@@ -289,7 +289,7 @@ function ResultBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="착장 촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

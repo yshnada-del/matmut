@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { HomeIndicator, StatusBar } from './SplashScreen.jsx'
 
 const socialButtons = [
-  { id: 'google', label: '구글 로그인', icon: '/assets/social-google.png' },
-  { id: 'naver', label: '네이버 로그인', icon: '/assets/social-naver.png' },
-  { id: 'kakao', label: '카카오톡 로그인', icon: '/assets/social-kakao.png' },
-  { id: 'apple', label: '애플 로그인', icon: '/assets/social-apple.png' },
+  { id: 'google', label: '구글 로그인', icon: `${import.meta.env.BASE_URL}assets/social-google.png` },
+  { id: 'naver', label: '네이버 로그인', icon: `${import.meta.env.BASE_URL}assets/social-naver.png` },
+  { id: 'kakao', label: '카카오톡 로그인', icon: `${import.meta.env.BASE_URL}assets/social-kakao.png` },
+  { id: 'apple', label: '애플 로그인', icon: `${import.meta.env.BASE_URL}assets/social-apple.png` },
 ]
 
 function AuthScreen({ onLogin }) {
@@ -171,7 +171,7 @@ function TextField({ label, hasIcon = false, error, ...inputProps }) {
         <input aria-invalid={Boolean(error)} aria-describedby={describedById} {...inputProps} />
         {hasIcon ? (
           <button className="password-toggle" type="button" aria-label={`${label} 보기`}>
-            <img src="/assets/icon-eye.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/icon-eye.png`} alt="" />
           </button>
         ) : null}
       </div>

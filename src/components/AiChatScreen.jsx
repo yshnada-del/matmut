@@ -8,7 +8,7 @@ const places = [
     id: 'pipeground',
     name: '파이프그라운드 한남',
     category: '피자',
-    image: '/assets/aichat-place-pipeground.png',
+    image: `${import.meta.env.BASE_URL}assets/aichat-place-pipeground.png`,
     rating: '4.7',
     reviews: '6,802',
     price: '20,000~30,000원대',
@@ -19,7 +19,7 @@ const places = [
     id: 'oasis',
     name: '오아시스 한남',
     category: '브런치',
-    image: '/assets/aichat-place-oasis.png',
+    image: `${import.meta.env.BASE_URL}assets/aichat-place-oasis.png`,
     rating: '4.0',
     reviews: '3,252',
     price: '20,000~30,000원대',
@@ -30,7 +30,7 @@ const places = [
     id: 'tatsu',
     name: '한남타츠',
     category: '이자카야',
-    image: '/assets/aichat-place-tatsu.png',
+    image: `${import.meta.env.BASE_URL}assets/aichat-place-tatsu.png`,
     rating: '4.3',
     reviews: '1,637',
     price: '50,000~70,000원대',
@@ -62,23 +62,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -87,15 +87,15 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
 ]
 
 function AiChatScreen({ photoUrl, onBack, onHome, onMyPage, onOpenRecommendationList, onCameraAddress, onReserve, onSavePlace, savedPlaceIds = [] }) {
-  const previewPhoto = photoUrl || '/assets/outfit.png'
+  const previewPhoto = photoUrl || `${import.meta.env.BASE_URL}assets/outfit.png`
   const [message, setMessage] = useState('')
   const [userMessages, setUserMessages] = useState([])
   const [recommendationVersion, setRecommendationVersion] = useState(0)
@@ -146,8 +146,8 @@ function AiChatScreen({ photoUrl, onBack, onHome, onMyPage, onOpenRecommendation
 
       <header className="aichat-header">
         <button className="aichat-icon-button aichat-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="aichat-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="aichat-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="aichat-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="aichat-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="aichat-icon-button aichat-menu" type="button" aria-label="메뉴">
           <span />
@@ -215,24 +215,24 @@ function AiChatScreen({ photoUrl, onBack, onHome, onMyPage, onOpenRecommendation
                             onSavePlace?.(place)
                           }}
                         >
-                          <img src={savedPlaceIds.includes(place.id) ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
+                          <img src={savedPlaceIds.includes(place.id) ? `${import.meta.env.BASE_URL}assets/bookmark-filled.svg` : `${import.meta.env.BASE_URL}assets/aichat-bookmark.svg`} alt="" />
                         </button>
                       </div>
                       <div className="aichat-place-meta">
                         <span>
-                          <img src="/assets/aichat-star.svg" alt="" />
+                          <img src={`${import.meta.env.BASE_URL}assets/aichat-star.svg`} alt="" />
                           {place.rating} <em>({place.reviews})</em>
                         </span>
                         <span>
-                          <img src="/assets/aichat-price.svg" alt="" />
+                          <img src={`${import.meta.env.BASE_URL}assets/aichat-price.svg`} alt="" />
                           {place.price}
                         </span>
                         <span>
-                          <img src="/assets/aichat-phone.svg" alt="" />
+                          <img src={`${import.meta.env.BASE_URL}assets/aichat-phone.svg`} alt="" />
                           {place.phone}
                         </span>
                         <span>
-                          <img src="/assets/aichat-clock.svg" alt="" />
+                          <img src={`${import.meta.env.BASE_URL}assets/aichat-clock.svg`} alt="" />
                           {place.distance}
                         </span>
                       </div>
@@ -242,7 +242,7 @@ function AiChatScreen({ photoUrl, onBack, onHome, onMyPage, onOpenRecommendation
                         onPointerDown={(event) => event.stopPropagation()}
                         onClick={() => onReserve?.(place.id)}
                       >
-                        <img src="/assets/aichat-pin.svg" alt="" />
+                        <img src={`${import.meta.env.BASE_URL}assets/aichat-pin.svg`} alt="" />
                         <span>예약하기</span>
                       </button>
                     </div>
@@ -297,7 +297,7 @@ function AiChatScreen({ photoUrl, onBack, onHome, onMyPage, onOpenRecommendation
               placeholder="다른 조건으로 추천받기..."
             />
             <button type="submit" aria-label="전송">
-              <img src="/assets/address-arrow-right.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/address-arrow-right.svg`} alt="" />
             </button>
           </form>
         </section>
@@ -402,7 +402,7 @@ function AiChatBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="착장 촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

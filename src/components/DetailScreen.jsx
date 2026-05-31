@@ -2,132 +2,132 @@ import { useRef, useState } from 'react'
 import { HomeIndicator, StatusBar } from './SplashScreen.jsx'
 
 const galleryImages = [
-  '/assets/detail-sub-1.png',
-  '/assets/detail-sub-2.png',
-  '/assets/detail-sub-3.png',
-  '/assets/detail-sub-4.png',
+  `${import.meta.env.BASE_URL}assets/detail-sub-1.png`,
+  `${import.meta.env.BASE_URL}assets/detail-sub-2.png`,
+  `${import.meta.env.BASE_URL}assets/detail-sub-3.png`,
+  `${import.meta.env.BASE_URL}assets/detail-sub-4.png`,
 ]
 
 const oasisImages = [
-  '/assets/figma-oasis-main.png',
-  '/assets/figma-oasis-sub-1.png',
-  '/assets/figma-oasis-sub-2.png',
-  '/assets/figma-oasis-sub-3.png',
-  '/assets/figma-oasis-sub-4.png',
+  `${import.meta.env.BASE_URL}assets/figma-oasis-main.png`,
+  `${import.meta.env.BASE_URL}assets/figma-oasis-sub-1.png`,
+  `${import.meta.env.BASE_URL}assets/figma-oasis-sub-2.png`,
+  `${import.meta.env.BASE_URL}assets/figma-oasis-sub-3.png`,
+  `${import.meta.env.BASE_URL}assets/figma-oasis-sub-4.png`,
 ]
 
 const oasisMenuImages = {
   exterior: oasisImages[0],
-  salad: '/assets/figma-oasis-menu-salad.png',
-  sandwich: '/assets/figma-oasis-menu-sandwich.png',
-  toast: '/assets/figma-oasis-menu-toast.png',
-  eggBenedict: '/assets/figma-oasis-menu-egg.png',
-  pancake: '/assets/figma-oasis-menu-pancake.png',
+  salad: `${import.meta.env.BASE_URL}assets/figma-oasis-menu-salad.png`,
+  sandwich: `${import.meta.env.BASE_URL}assets/figma-oasis-menu-sandwich.png`,
+  toast: `${import.meta.env.BASE_URL}assets/figma-oasis-menu-toast.png`,
+  eggBenedict: `${import.meta.env.BASE_URL}assets/figma-oasis-menu-egg.png`,
+  pancake: `${import.meta.env.BASE_URL}assets/figma-oasis-menu-pancake.png`,
 }
 
 const tatsuImages = [
-  '/assets/main.png',
-  '/assets/sub1.png',
-  '/assets/sub2.png',
-  '/assets/sub3.png',
-  '/assets/sub4.png',
+  `${import.meta.env.BASE_URL}assets/main.png`,
+  `${import.meta.env.BASE_URL}assets/sub1.png`,
+  `${import.meta.env.BASE_URL}assets/sub2.png`,
+  `${import.meta.env.BASE_URL}assets/sub3.png`,
+  `${import.meta.env.BASE_URL}assets/sub4.png`,
 ]
 
 const createPhotoRange = (start, end) =>
-  Array.from({ length: end - start + 1 }, (_, index) => `/assets/photo${String(start + index).padStart(2, '0')}.png`)
+  Array.from({ length: end - start + 1 }, (_, index) => `${import.meta.env.BASE_URL}assets/photo${String(start + index).padStart(2, '0')}.png`)
 
 const tatsuPhotoAllImages = createPhotoRange(61, 78)
 const tatsuPhotoBusinessImages = createPhotoRange(79, 89)
 const tatsuPhotoFoodImages = createPhotoRange(90, 107)
 const tatsuPhotoInteriorImages = [
-  '/assets/photo108.png',
-  '/assets/photo110.png',
-  '/assets/photo112.png',
-  '/assets/photo114.png',
-  '/assets/photo111.png',
-  '/assets/photo113.png',
-  '/assets/photo109.png',
-  '/assets/photo115.png',
-  '/assets/photo116.png',
+  `${import.meta.env.BASE_URL}assets/photo108.png`,
+  `${import.meta.env.BASE_URL}assets/photo110.png`,
+  `${import.meta.env.BASE_URL}assets/photo112.png`,
+  `${import.meta.env.BASE_URL}assets/photo114.png`,
+  `${import.meta.env.BASE_URL}assets/photo111.png`,
+  `${import.meta.env.BASE_URL}assets/photo113.png`,
+  `${import.meta.env.BASE_URL}assets/photo109.png`,
+  `${import.meta.env.BASE_URL}assets/photo115.png`,
+  `${import.meta.env.BASE_URL}assets/photo116.png`,
 ]
 const tatsuPhotoExteriorImages = [
-  '/assets/photo117.png',
-  '/assets/photo122.png',
-  '/assets/photo118.png',
-  '/assets/photo121.png',
-  '/assets/photo120.png',
-  '/assets/photo119.png',
+  `${import.meta.env.BASE_URL}assets/photo117.png`,
+  `${import.meta.env.BASE_URL}assets/photo122.png`,
+  `${import.meta.env.BASE_URL}assets/photo118.png`,
+  `${import.meta.env.BASE_URL}assets/photo121.png`,
+  `${import.meta.env.BASE_URL}assets/photo120.png`,
+  `${import.meta.env.BASE_URL}assets/photo119.png`,
 ]
 
 const oasisPhotoAllImages = [
-  '/assets/photo01.png',
-  '/assets/photo03.png',
-  '/assets/photo08.png',
-  '/assets/photo06.png',
-  '/assets/photo02.png',
-  '/assets/photo04.png',
-  '/assets/photo09.png',
-  '/assets/photo07.png',
-  '/assets/photo10.png',
-  '/assets/photo05.png',
-  '/assets/photo17.png',
-  '/assets/photo12.png',
-  '/assets/photo11.png',
-  '/assets/photo15.png',
-  '/assets/photo18.png',
-  '/assets/photo13.png',
-  '/assets/photo16.png',
-  '/assets/photo14.png',
+  `${import.meta.env.BASE_URL}assets/photo01.png`,
+  `${import.meta.env.BASE_URL}assets/photo03.png`,
+  `${import.meta.env.BASE_URL}assets/photo08.png`,
+  `${import.meta.env.BASE_URL}assets/photo06.png`,
+  `${import.meta.env.BASE_URL}assets/photo02.png`,
+  `${import.meta.env.BASE_URL}assets/photo04.png`,
+  `${import.meta.env.BASE_URL}assets/photo09.png`,
+  `${import.meta.env.BASE_URL}assets/photo07.png`,
+  `${import.meta.env.BASE_URL}assets/photo10.png`,
+  `${import.meta.env.BASE_URL}assets/photo05.png`,
+  `${import.meta.env.BASE_URL}assets/photo17.png`,
+  `${import.meta.env.BASE_URL}assets/photo12.png`,
+  `${import.meta.env.BASE_URL}assets/photo11.png`,
+  `${import.meta.env.BASE_URL}assets/photo15.png`,
+  `${import.meta.env.BASE_URL}assets/photo18.png`,
+  `${import.meta.env.BASE_URL}assets/photo13.png`,
+  `${import.meta.env.BASE_URL}assets/photo16.png`,
+  `${import.meta.env.BASE_URL}assets/photo14.png`,
 ]
 const oasisPhotoBusinessImages = [
-  '/assets/photo19.png',
-  '/assets/photo20.png',
-  '/assets/photo22.png',
-  '/assets/photo21.png',
-  '/assets/photo24.png',
-  '/assets/photo23.png',
-  '/assets/photo25.png',
+  `${import.meta.env.BASE_URL}assets/photo19.png`,
+  `${import.meta.env.BASE_URL}assets/photo20.png`,
+  `${import.meta.env.BASE_URL}assets/photo22.png`,
+  `${import.meta.env.BASE_URL}assets/photo21.png`,
+  `${import.meta.env.BASE_URL}assets/photo24.png`,
+  `${import.meta.env.BASE_URL}assets/photo23.png`,
+  `${import.meta.env.BASE_URL}assets/photo25.png`,
 ]
 const oasisPhotoFoodImages = [
-  '/assets/photo26.png',
-  '/assets/photo28.png',
-  '/assets/photo33.png',
-  '/assets/photo31.png',
-  '/assets/photo27.png',
-  '/assets/photo29.png',
-  '/assets/photo34.png',
-  '/assets/photo32.png',
-  '/assets/photo35.png',
-  '/assets/photo30.png',
-  '/assets/photo42.png',
-  '/assets/photo37.png',
-  '/assets/photo36.png',
-  '/assets/photo40.png',
-  '/assets/photo43.png',
-  '/assets/photo38.png',
-  '/assets/photo41.png',
-  '/assets/photo39.png',
+  `${import.meta.env.BASE_URL}assets/photo26.png`,
+  `${import.meta.env.BASE_URL}assets/photo28.png`,
+  `${import.meta.env.BASE_URL}assets/photo33.png`,
+  `${import.meta.env.BASE_URL}assets/photo31.png`,
+  `${import.meta.env.BASE_URL}assets/photo27.png`,
+  `${import.meta.env.BASE_URL}assets/photo29.png`,
+  `${import.meta.env.BASE_URL}assets/photo34.png`,
+  `${import.meta.env.BASE_URL}assets/photo32.png`,
+  `${import.meta.env.BASE_URL}assets/photo35.png`,
+  `${import.meta.env.BASE_URL}assets/photo30.png`,
+  `${import.meta.env.BASE_URL}assets/photo42.png`,
+  `${import.meta.env.BASE_URL}assets/photo37.png`,
+  `${import.meta.env.BASE_URL}assets/photo36.png`,
+  `${import.meta.env.BASE_URL}assets/photo40.png`,
+  `${import.meta.env.BASE_URL}assets/photo43.png`,
+  `${import.meta.env.BASE_URL}assets/photo38.png`,
+  `${import.meta.env.BASE_URL}assets/photo41.png`,
+  `${import.meta.env.BASE_URL}assets/photo39.png`,
 ]
 const oasisPhotoInteriorImages = [
-  '/assets/photo44.png',
-  '/assets/photo46.png',
-  '/assets/photo51.png',
-  '/assets/photo49.png',
-  '/assets/photo45.png',
-  '/assets/photo47.png',
-  '/assets/photo52.png',
-  '/assets/photo50.png',
-  '/assets/photo53.png',
-  '/assets/photo48.png',
-  '/assets/photo54.png',
+  `${import.meta.env.BASE_URL}assets/photo44.png`,
+  `${import.meta.env.BASE_URL}assets/photo46.png`,
+  `${import.meta.env.BASE_URL}assets/photo51.png`,
+  `${import.meta.env.BASE_URL}assets/photo49.png`,
+  `${import.meta.env.BASE_URL}assets/photo45.png`,
+  `${import.meta.env.BASE_URL}assets/photo47.png`,
+  `${import.meta.env.BASE_URL}assets/photo52.png`,
+  `${import.meta.env.BASE_URL}assets/photo50.png`,
+  `${import.meta.env.BASE_URL}assets/photo53.png`,
+  `${import.meta.env.BASE_URL}assets/photo48.png`,
+  `${import.meta.env.BASE_URL}assets/photo54.png`,
 ]
 const oasisPhotoExteriorImages = [
-  '/assets/photo55.png',
-  '/assets/photo60.png',
-  '/assets/photo56.png',
-  '/assets/photo58.png',
-  '/assets/photo59.png',
-  '/assets/photo57.png',
+  `${import.meta.env.BASE_URL}assets/photo55.png`,
+  `${import.meta.env.BASE_URL}assets/photo60.png`,
+  `${import.meta.env.BASE_URL}assets/photo56.png`,
+  `${import.meta.env.BASE_URL}assets/photo58.png`,
+  `${import.meta.env.BASE_URL}assets/photo59.png`,
+  `${import.meta.env.BASE_URL}assets/photo57.png`,
 ]
 
 const placeDetails = {
@@ -140,7 +140,7 @@ const placeDetails = {
         트렌디한 다이닝 공간
       </>
     ),
-    mainImage: '/assets/detail-main.png',
+    mainImage: `${import.meta.env.BASE_URL}assets/detail-main.png`,
     galleryImages,
     rating: '4.7',
     reviews: '6,802',
@@ -154,7 +154,7 @@ const placeDetails = {
     closeTime: '22:00 영업종료',
     phone: '02-793-1500',
     website: 'https://www.instagram.com/pipeground_hannam',
-    mapImage: '/assets/detail-map.png',
+    mapImage: `${import.meta.env.BASE_URL}assets/detail-map.png`,
   },
   oasis: {
     name: '오아시스 한남점',
@@ -182,13 +182,13 @@ const placeDetails = {
     closeTime: '18:00 영업종료',
     phone: '02-790-8906',
     website: 'https://www.instagram.com/oasisbrunch',
-    mapImage: '/assets/figma-oasis-map.png',
+    mapImage: `${import.meta.env.BASE_URL}assets/figma-oasis-map.png`,
     amenities: [
-      { icon: '/assets/detail-park.svg', label: '주차 가능' },
-      { icon: '/assets/detail-restroom.svg', label: '남/녀 화장실\n구분' },
-      { icon: '/assets/detail-wifi.svg', label: '무선 인터넷' },
-      { icon: '/assets/detail-delivery.svg', label: '배달' },
-      { icon: '/assets/detail-package.svg', label: '포장' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-park.svg`, label: '주차 가능' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-restroom.svg`, label: '남/녀 화장실\n구분' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-wifi.svg`, label: '무선 인터넷' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-delivery.svg`, label: '배달' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-package.svg`, label: '포장' },
     ],
   },
   tatsu: {
@@ -219,13 +219,13 @@ const placeDetails = {
     closeTime: '24:00 영업종료',
     phone: '02-797-0624',
     website: 'https://www.instagram.com/hannam_tatsu',
-    mapImage: '/assets/aichat-place-tatsu.png',
+    mapImage: `${import.meta.env.BASE_URL}assets/aichat-place-tatsu.png`,
     amenities: [
-      { icon: '/assets/detail-park.svg', label: '주차 가능' },
-      { icon: '/assets/detail-restroom.svg', label: '남/녀 화장실\n구분' },
-      { icon: '/assets/detail-wifi.svg', label: '무선 인터넷' },
-      { icon: '/assets/detail-delivery.svg', label: '배달' },
-      { icon: '/assets/detail-package.svg', label: '포장' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-park.svg`, label: '주차 가능' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-restroom.svg`, label: '남/녀 화장실\n구분' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-wifi.svg`, label: '무선 인터넷' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-delivery.svg`, label: '배달' },
+      { icon: `${import.meta.env.BASE_URL}assets/detail-package.svg`, label: '포장' },
     ],
   },
 }
@@ -236,23 +236,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -261,19 +261,19 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
 ]
 
 const amenities = [
-  { icon: '/assets/detail-no-park.svg', label: '주차장 없음' },
-  { icon: '/assets/detail-restroom.svg', label: '남/녀 화장실\n구분' },
-  { icon: '/assets/detail-wifi.svg', label: '무선 인터넷' },
-  { icon: '/assets/detail-delivery.svg', label: '배달' },
-  { icon: '/assets/detail-takeout.svg', label: '포장' },
+  { icon: `${import.meta.env.BASE_URL}assets/detail-no-park.svg`, label: '주차장 없음' },
+  { icon: `${import.meta.env.BASE_URL}assets/detail-restroom.svg`, label: '남/녀 화장실\n구분' },
+  { icon: `${import.meta.env.BASE_URL}assets/detail-wifi.svg`, label: '무선 인터넷' },
+  { icon: `${import.meta.env.BASE_URL}assets/detail-delivery.svg`, label: '배달' },
+  { icon: `${import.meta.env.BASE_URL}assets/detail-takeout.svg`, label: '포장' },
 ]
 
 const placeReviewData = {
@@ -294,7 +294,7 @@ const placeReviewData = {
         author: '맛잘알지이수',
         rating: '4.5',
         date: '2026.04.20',
-        images: ['/assets/detail-review-pipe-1.png', '/assets/detail-review-pipe-2.png', '/assets/detail-review-pipe-3.png'],
+        images: [`${import.meta.env.BASE_URL}assets/detail-review-pipe-1.png`, `${import.meta.env.BASE_URL}assets/detail-review-pipe-2.png`, `${import.meta.env.BASE_URL}assets/detail-review-pipe-3.png`],
         text: '분위기 좋고 음식도 만족스러운 한남동 피자·파스타 맛집이에요. 옥수수 피자와 라구 파스타가 특히 유명하고 감각적인 인테리어 덕분에 데이트나 친구 모임 장소로도 잘 어울려요. 웨이팅이 있을 수 있어서 방문 전 체크는 필요한 편이에요.',
         likes: 45,
         comments: 12,
@@ -318,7 +318,7 @@ const placeReviewData = {
         author: '맛잘알지이수',
         rating: '4.3',
         date: '2026.04.20',
-        images: ['/assets/photo28.png', '/assets/photo31.png', '/assets/figma-oasis-main.png'],
+        images: [`${import.meta.env.BASE_URL}assets/photo28.png`, `${import.meta.env.BASE_URL}assets/photo31.png`, `${import.meta.env.BASE_URL}assets/figma-oasis-main.png`],
         text: '오아시스 한남점은 깔끔한 분위기와 여유로운 무드가 매력적인 한남동 브런치 맛집이에요. 에그 베네딕트와 프렌치 토스트처럼 인기 있는 브런치 메뉴가 잘 갖춰져 있고, 채광 좋은 공간 덕분에 친구와의 약속이나 가벼운 데이트 장소로도 잘 어울려요. 다만 인기 있는 편이라 방문 시간에 따라 대기가 있을 수 있어요.',
         likes: 52,
         comments: 8,
@@ -342,7 +342,7 @@ const placeReviewData = {
         author: '맛잘알지이수',
         rating: '4.6',
         date: '2026.04.20',
-        images: ['/assets/main.png', '/assets/photo93.png', '/assets/photo91.png'],
+        images: [`${import.meta.env.BASE_URL}assets/main.png`, `${import.meta.env.BASE_URL}assets/photo93.png`, `${import.meta.env.BASE_URL}assets/photo91.png`],
         text: '한남타츠는 차분하고 고급스러운 분위기에서 식사와 술자리를 함께 즐기기 좋은 한남동 이자카야예요. 사시미, 나베, 로바타야키처럼 메뉴 구성이 다양해서 여러 가지를 나눠 먹기 좋고, 오픈 주방이 주는 생동감 덕분에 공간의 분위기도 매력적으로 느껴져요. 가볍게 한 끼를 해결하는 느낌보다는, 분위기 있는 저녁 식사나 약속 장소로 더 잘 어울리는 곳이에요.',
         likes: 72,
         comments: 6,
@@ -380,7 +380,7 @@ const menuItems = [
     name: '시저 샐러드',
     price: '14,000원',
     categoryStart: 'salad',
-    image: '/assets/detail-menu-salad.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-salad.png`,
   },
   {
     name: '옥수수 피자',
@@ -388,56 +388,56 @@ const menuItems = [
     badge: '대표',
     groupStart: true,
     categoryStart: 'pizza',
-    image: '/assets/detail-menu-corn-pizza.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-corn-pizza.png`,
   },
   {
     name: '페퍼로니 피자',
     price: '21,000원',
-    image: '/assets/detail-menu-pepperoni.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-pepperoni.png`,
   },
   {
     name: '매운 페퍼로니 피자',
     price: '22,000원',
-    image: '/assets/detail-menu-spicy-pepperoni.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-spicy-pepperoni.png`,
   },
   {
     name: '콰트로 치즈 피자',
     price: '21,000원',
-    image: '/assets/detail-menu-quattro-cheese.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-quattro-cheese.png`,
   },
   {
     name: '루꼴라 버섯 피자',
     price: '26,000원',
-    image: '/assets/detail-menu-rucola-mushroom.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-rucola-mushroom.png`,
   },
   {
     name: '버섯 콘부 파스타',
     price: '26,000원',
     groupStart: true,
     categoryStart: 'pasta',
-    image: '/assets/detail-menu-mushroom-konbu.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-mushroom-konbu.png`,
   },
   {
     name: '마팔디네 레드 라구 파스타',
     price: '21,000원',
-    image: '/assets/detail-menu-red-ragu.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-red-ragu.png`,
   },
   {
     name: '리가토니 화이트 라구 파스타',
     price: '22,000원',
-    image: '/assets/detail-menu-white-ragu.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-white-ragu.png`,
   },
   {
     name: '코울슬로',
     price: '3,000원',
     groupStart: true,
     categoryStart: 'extra',
-    image: '/assets/detail-menu-mushroom-konbu.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-mushroom-konbu.png`,
   },
   {
     name: '당근 라페',
     price: '3,000원',
-    image: '/assets/detail-menu-red-ragu.png',
+    image: `${import.meta.env.BASE_URL}assets/detail-menu-red-ragu.png`,
   },
 ]
 
@@ -805,7 +805,7 @@ const createPhotoItems = (prefix, count, layout) =>
     const [left, top, width, height] = layout[index]
 
     return {
-      src: `/assets/${prefix}-${String(index + 1).padStart(2, '0')}.png`,
+      src: `${import.meta.env.BASE_URL}assets/${prefix}-${String(index + 1).padStart(2, '0')}.png`,
       left,
       top,
       width,
@@ -1082,7 +1082,7 @@ function ReviewSection({ data, rating }) {
     <section className="detail-review-section" aria-label="리뷰">
       <div className="detail-review-summary">
         <div className="detail-review-score">
-          <img src="/assets/detail-star.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/detail-star.svg`} alt="" />
           <strong>{rating}</strong>
         </div>
         <div className="detail-review-bars">
@@ -1117,12 +1117,12 @@ function ReviewSection({ data, rating }) {
           <article className="detail-review-card" key={review.id}>
             <div className="detail-review-top">
               <div className="detail-review-profile">
-                <img src="/assets/detail-review-avatar.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/detail-review-avatar.png`} alt="" />
                 <strong>{review.author}</strong>
               </div>
               <div className="detail-review-date">
                 <div>
-                  <img src="/assets/detail-star.svg" alt="" />
+                  <img src={`${import.meta.env.BASE_URL}assets/detail-star.svg`} alt="" />
                   <span>{review.rating}</span>
                 </div>
                 <time>{review.date}</time>
@@ -1138,11 +1138,11 @@ function ReviewSection({ data, rating }) {
               <p>{review.text}</p>
               <div className="detail-review-actions">
                 <span>
-                  <img src="/assets/detail-review-heart.svg" alt="" />
+                  <img src={`${import.meta.env.BASE_URL}assets/detail-review-heart.svg`} alt="" />
                   {review.likes}
                 </span>
                 <span>
-                  <img src="/assets/detail-review-message.svg" alt="" />
+                  <img src={`${import.meta.env.BASE_URL}assets/detail-review-message.svg`} alt="" />
                   {review.comments}
                 </span>
               </div>
@@ -1268,8 +1268,8 @@ function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCame
 
       <header className="detail-header">
         <button className="detail-icon-button detail-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="detail-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="detail-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="detail-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="detail-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="detail-icon-button detail-menu" type="button" aria-label="메뉴">
           <span />
@@ -1295,22 +1295,22 @@ function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCame
               <p>{place.description}</p>
             </div>
             <button className={`detail-bookmark ${isSaved ? 'is-saved' : ''}`} type="button" aria-label="저장" aria-pressed={isSaved} onClick={saveCurrentPlace}>
-              <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
+              <img src={isSaved ? `${import.meta.env.BASE_URL}assets/bookmark-filled.svg` : `${import.meta.env.BASE_URL}assets/aichat-bookmark.svg`} alt="" />
             </button>
           </div>
 
           <div className="detail-meta-list">
             <div className="detail-meta-row detail-rating-row">
-              <img src="/assets/detail-star.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/detail-star.svg`} alt="" />
               <strong>{place.rating}</strong>
               <span>({place.reviews})</span>
             </div>
             <div className="detail-meta-row is-address">
-              <img src="/assets/detail-location.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/detail-location.svg`} alt="" />
               <p>{place.address}</p>
             </div>
             <div className="detail-meta-row detail-business-row">
-              <img src="/assets/detail-clock.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/detail-clock.svg`} alt="" />
               <strong>영업 중</strong>
               <span className="detail-dot">•</span>
               <span>{place.closeTime}</span>
@@ -1321,7 +1321,7 @@ function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCame
                 aria-expanded={isHoursOpen}
                 onClick={() => setIsHoursOpen((open) => !open)}
               >
-                <img src="/assets/detail-chevron-down.svg" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/detail-chevron-down.svg`} alt="" />
               </button>
             </div>
             {isHoursOpen ? (
@@ -1339,11 +1339,11 @@ function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCame
               </div>
             ) : null}
             <div className="detail-meta-row">
-              <img src="/assets/detail-phone.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/detail-phone.svg`} alt="" />
               <p>{place.phone}</p>
             </div>
             <div className="detail-meta-row detail-link-row">
-              <img src="/assets/detail-link.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/detail-link.svg`} alt="" />
               <a href={place.website} target="_blank" rel="noreferrer">
                 {place.website}
               </a>
@@ -1466,7 +1466,7 @@ function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCame
               <article className="detail-map-card">
                 <img className="detail-map-image" src={place.mapImage} alt="" />
                 <div className="detail-map-address">
-                  <img src="/assets/detail-map-pin.svg" alt="" />
+                  <img src={`${import.meta.env.BASE_URL}assets/detail-map-pin.svg`} alt="" />
                   <p>
                     {place.address}
                   </p>
@@ -1476,10 +1476,10 @@ function DetailScreen({ placeId = 'pipeground', onBack, onHome, onMyPage, onCame
 
             <div className="detail-action-bar">
               <button className={`detail-save-button ${isSaved ? 'is-saved' : ''}`} type="button" aria-label="저장" aria-pressed={isSaved} onClick={saveCurrentPlace}>
-                <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/detail-save-bookmark.svg'} alt="" />
+                <img src={isSaved ? `${import.meta.env.BASE_URL}assets/bookmark-filled.svg` : `${import.meta.env.BASE_URL}assets/detail-save-bookmark.svg`} alt="" />
               </button>
               <button className="detail-reserve-button" type="button">
-                <img src="/assets/detail-calendar.svg" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/detail-calendar.svg`} alt="" />
                 예약하기
               </button>
             </div>
@@ -1513,7 +1513,7 @@ function DetailBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="착장 촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

@@ -56,7 +56,7 @@ function PhotoScreen({ mode = 'fallback', photoUrl = '', onGalleryPhoto, onCompl
   }, [cameraStream])
 
   const shouldShowCamera = mode === 'camera' && cameraReady && !photoUrl
-  const previewSrc = photoUrl || '/assets/outfit.png'
+  const previewSrc = photoUrl || `${import.meta.env.BASE_URL}assets/outfit.png`
 
   const handleGalleryClick = () => {
     fileInputRef.current?.click()
@@ -130,28 +130,28 @@ function PhotoScreen({ mode = 'fallback', photoUrl = '', onGalleryPhoto, onCompl
         <div className="photo-status-dot" />
 
         <div className="photo-flash">
-          <img className="photo-flash-icon" src="/assets/ready-photo-flash.svg" alt="" />
-          <img className="photo-flash-cross" src="/assets/ready-photo-flash-cross.svg" alt="" />
+          <img className="photo-flash-icon" src={`${import.meta.env.BASE_URL}assets/ready-photo-flash.svg`} alt="" />
+          <img className="photo-flash-cross" src={`${import.meta.env.BASE_URL}assets/ready-photo-flash-cross.svg`} alt="" />
         </div>
 
-        <img className="photo-swipe" src="/assets/ready-photo-swipe-up.svg" alt="" />
+        <img className="photo-swipe" src={`${import.meta.env.BASE_URL}assets/ready-photo-swipe-up.svg`} alt="" />
 
         <div className="photo-raw-live" aria-hidden="true">
           <div className="photo-raw">
             <span className="photo-raw-border" />
             <span className="photo-raw-fill" />
             <span>RAW</span>
-            <img src="/assets/ready-photo-raw-stroke.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/ready-photo-raw-stroke.svg`} alt="" />
           </div>
-          <img className="photo-live" src="/assets/ready-photo-live.svg" alt="" />
+          <img className="photo-live" src={`${import.meta.env.BASE_URL}assets/ready-photo-live.svg`} alt="" />
         </div>
 
         <div className="photo-camera-controls">
           <div className="photo-zoom" aria-hidden="true">
             <span className="photo-zoom-bg" />
-            <img className="photo-zoom-dot is-left" src="/assets/ready-photo-zoom-dot.svg" alt="" />
-            <img className="photo-zoom-dot is-right" src="/assets/ready-photo-zoom-dot.svg" alt="" />
-            <img className="photo-zoom-active" src="/assets/ready-photo-zoom-active.svg" alt="" />
+            <img className="photo-zoom-dot is-left" src={`${import.meta.env.BASE_URL}assets/ready-photo-zoom-dot.svg`} alt="" />
+            <img className="photo-zoom-dot is-right" src={`${import.meta.env.BASE_URL}assets/ready-photo-zoom-dot.svg`} alt="" />
+            <img className="photo-zoom-active" src={`${import.meta.env.BASE_URL}assets/ready-photo-zoom-active.svg`} alt="" />
             <span className="photo-zoom-label is-left">.5</span>
             <span className="photo-zoom-label is-active">1x</span>
             <span className="photo-zoom-label is-right">3</span>
@@ -167,13 +167,13 @@ function PhotoScreen({ mode = 'fallback', photoUrl = '', onGalleryPhoto, onCompl
 
           <div className="photo-actions">
             <button className="photo-thumbnail" type="button" aria-label="갤러리 업로드" onClick={handleGalleryClick}>
-              <img src="/assets/ready-photo-mountain.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/ready-photo-mountain.svg`} alt="" />
             </button>
             <button className="photo-shutter" type="button" aria-label="촬영" onClick={handleShutterClick}>
-              <img src="/assets/ready-photo-shutter.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/ready-photo-shutter.svg`} alt="" />
             </button>
             <button className="photo-flip" type="button" aria-label="전면 후면 카메라 전환" onClick={handleFlipClick}>
-              <img src="/assets/ready-photo-camera-flip.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/ready-photo-camera-flip.svg`} alt="" />
             </button>
           </div>
         </div>

@@ -5,19 +5,19 @@ const features = [
   {
     id: 'photo',
     label: '사진 한 장으로 가능',
-    icon: '/assets/home-feature-photo.png',
+    icon: `${import.meta.env.BASE_URL}assets/home-feature-photo.png`,
     imageClassName: 'home-feature-photo',
   },
   {
     id: 'face',
     label: '얼굴 없이 가능',
-    icon: '/assets/home-feature-face.png',
+    icon: `${import.meta.env.BASE_URL}assets/home-feature-face.png`,
     imageClassName: 'home-feature-face',
   },
   {
     id: 'fast',
     label: '빠르게 추천 가능',
-    icon: '/assets/home-feature-fast.png',
+    icon: `${import.meta.env.BASE_URL}assets/home-feature-fast.png`,
     imageClassName: 'home-feature-fast',
   },
 ]
@@ -29,12 +29,12 @@ const previewTabs = [
     cards: [
       {
         id: 'casual',
-        image: '/assets/home-card-casual.png',
+        image: `${import.meta.env.BASE_URL}assets/home-card-casual.png`,
         tags: ['캐주얼', '미니멀'],
       },
       {
         id: 'street',
-        image: '/assets/home-card-street.png',
+        image: `${import.meta.env.BASE_URL}assets/home-card-street.png`,
         tags: ['스트릿', '빈티지'],
       },
     ],
@@ -45,13 +45,13 @@ const previewTabs = [
     cards: [
       {
         id: 'classic',
-        image: '/assets/home-similar-classic.png',
+        image: `${import.meta.env.BASE_URL}assets/home-similar-classic.png`,
         tags: ['클래식', '캐주얼'],
         imageClassName: 'is-classic',
       },
       {
         id: 'amekaji',
-        image: '/assets/home-similar-amekaji.png',
+        image: `${import.meta.env.BASE_URL}assets/home-similar-amekaji.png`,
         tags: ['아메카지', '스트릿'],
       },
     ],
@@ -61,17 +61,17 @@ const previewTabs = [
 const recommendationCards = [
   {
     id: 'date',
-    image: '/assets/home-card-date.png',
+    image: `${import.meta.env.BASE_URL}assets/home-card-date.png`,
     tag: '데이트',
   },
   {
     id: 'meeting',
-    image: '/assets/home-card-meeting.png',
+    image: `${import.meta.env.BASE_URL}assets/home-card-meeting.png`,
     tag: '모임',
   },
   {
     id: 'solo',
-    image: '/assets/home-card-solo.png',
+    image: `${import.meta.env.BASE_URL}assets/home-card-solo.png`,
     tag: '혼밥',
   },
 ]
@@ -83,23 +83,23 @@ const navItems = [
     active: true,
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -108,8 +108,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -125,7 +125,7 @@ function HomeScreen({ onAddress, onMood, onReviewPage, onRecommendationPage, onM
       <StatusBar />
 
       <header className="home-header">
-        <img className="home-logo" src="/assets/home-logo.svg" alt="matmut" />
+        <img className="home-logo" src={`${import.meta.env.BASE_URL}assets/home-logo.svg`} alt="matmut" />
         <button className="home-menu" type="button" aria-label="메뉴">
           <span />
           <span />
@@ -325,7 +325,7 @@ function BottomNavigation({ onCameraAddress, onMood, onMyPage }) {
 
       <button className="home-camera-button" type="button" aria-label="착장 촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

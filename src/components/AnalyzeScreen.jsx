@@ -25,23 +25,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -50,8 +50,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -83,8 +83,8 @@ function AnalyzeScreen({ onBack, onHome, onMyPage, onComplete, onCameraAddress }
 
       <header className="analyze-header">
         <button className="analyze-icon-button analyze-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="analyze-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="analyze-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="analyze-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="analyze-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="analyze-icon-button analyze-menu" type="button" aria-label="메뉴">
           <span />
@@ -149,7 +149,7 @@ function AnalyzeBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="착장 촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

@@ -9,7 +9,7 @@ const moodPlaces = [
     id: 'paris',
     name: '빠리가옥',
     category: '프랑스 음식',
-    image: '/assets/mood-paris.png',
+    image: `${import.meta.env.BASE_URL}assets/mood-paris.png`,
     rating: '4.5',
     reviews: '7,896',
     price: '20,000~30,000원대',
@@ -20,7 +20,7 @@ const moodPlaces = [
     id: 'seoulcoffee',
     name: '서울커피 익선본점',
     category: '카페 디저트',
-    image: '/assets/mood-seoulcoffee.png',
+    image: `${import.meta.env.BASE_URL}assets/mood-seoulcoffee.png`,
     rating: '4.2',
     reviews: '3,461',
     price: '10,000~20,000원대',
@@ -31,7 +31,7 @@ const moodPlaces = [
     id: 'eulji',
     name: '을지다락',
     category: '양식',
-    image: '/assets/mood-eulji.png',
+    image: `${import.meta.env.BASE_URL}assets/mood-eulji.png`,
     rating: '4.4',
     reviews: '4,926',
     price: '15,000~25,000원대',
@@ -42,7 +42,7 @@ const moodPlaces = [
     id: 'upstanding',
     name: '업스탠딩',
     category: '카페',
-    image: '/assets/mood-upstanding.png',
+    image: `${import.meta.env.BASE_URL}assets/mood-upstanding.png`,
     rating: '4.7',
     reviews: '1,092',
     price: '10,000~20,000원대',
@@ -57,15 +57,15 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
@@ -73,8 +73,8 @@ const navItems = [
     active: true,
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -83,8 +83,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -100,8 +100,8 @@ function MoodScreen({ onBack, onHome, onMyPage, onCameraAddress, onOpenReviewPag
 
       <header className="mood-header">
         <button className="mood-icon-button mood-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="mood-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="mood-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="mood-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="mood-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="mood-icon-button mood-menu" type="button" aria-label="메뉴">
           <span />
@@ -255,26 +255,26 @@ function MoodPlaceCard({ place, onOpenReviewPage, onSavePlace, isSaved }) {
               onSavePlace?.(place)
             }}
           >
-            <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/aichat-bookmark.svg'} alt="" />
+            <img src={isSaved ? `${import.meta.env.BASE_URL}assets/bookmark-filled.svg` : `${import.meta.env.BASE_URL}assets/aichat-bookmark.svg`} alt="" />
           </button>
         </div>
 
         <div className="mood-place-meta">
           <span>
-            <img src="/assets/aichat-star.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-star.svg`} alt="" />
             <strong>{place.rating}</strong>
             <em>({place.reviews})</em>
           </span>
           <span>
-            <img src="/assets/aichat-price.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-price.svg`} alt="" />
             {place.price}
           </span>
           <span>
-            <img src="/assets/aichat-phone.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-phone.svg`} alt="" />
             {place.phone}
           </span>
           <span>
-            <img src="/assets/aichat-clock.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/aichat-clock.svg`} alt="" />
             {place.distance}
           </span>
         </div>
@@ -303,7 +303,7 @@ function MoodBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

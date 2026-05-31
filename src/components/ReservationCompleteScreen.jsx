@@ -6,23 +6,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -31,8 +31,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -66,10 +66,10 @@ function ReservationCompleteScreen({ reservation, onHome, onMyPage, onReservatio
         <section className="reservation-info-card" aria-label="예약 정보">
           <h2>예약 정보</h2>
           <div className="reservation-info-list">
-            <ReservationInfoItem icon="/assets/detail-location.svg" label="장소" value={placeName} />
-            <ReservationInfoItem icon="/assets/reservation-date.svg" label="날짜" value={visitDateText} />
-            <ReservationInfoItem icon="/assets/reservation-time.svg" label="시간" value={time} />
-            <ReservationInfoItem icon="/assets/reservation-people.svg" label="인원" value={people} />
+            <ReservationInfoItem icon={`${import.meta.env.BASE_URL}assets/detail-location.svg`} label="장소" value={placeName} />
+            <ReservationInfoItem icon={`${import.meta.env.BASE_URL}assets/reservation-date.svg`} label="날짜" value={visitDateText} />
+            <ReservationInfoItem icon={`${import.meta.env.BASE_URL}assets/reservation-time.svg`} label="시간" value={time} />
+            <ReservationInfoItem icon={`${import.meta.env.BASE_URL}assets/reservation-people.svg`} label="인원" value={people} />
           </div>
         </section>
 
@@ -81,11 +81,11 @@ function ReservationCompleteScreen({ reservation, onHome, onMyPage, onReservatio
 
         <section className="reservation-complete-actions">
           <button className="reservation-history-button" type="button" onClick={onReservationHistory || onMyPage}>
-            <img className="reservation-action-icon" src="/assets/reservation-history.svg" alt="" />
+            <img className="reservation-action-icon" src={`${import.meta.env.BASE_URL}assets/reservation-history.svg`} alt="" />
             예약 내역 보기
           </button>
           <button className="reservation-home-button" type="button" onClick={onHome}>
-            <img className="reservation-action-icon" src="/assets/reservation-home.svg" alt="" />
+            <img className="reservation-action-icon" src={`${import.meta.env.BASE_URL}assets/reservation-home.svg`} alt="" />
             홈으로 돌아가기
           </button>
         </section>
@@ -129,7 +129,7 @@ function ReservationBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>

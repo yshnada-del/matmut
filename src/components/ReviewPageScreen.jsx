@@ -12,8 +12,8 @@ const reviews = [
     rating: '4.7',
     area: '망원',
     likes: '142',
-    styleImage: '/assets/reviewpage-card-01-style.png',
-    placeImage: '/assets/reviewpage-card-01-place.png',
+    styleImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-01-style.png`,
+    placeImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-01-place.png`,
     styleCropTop: '-13.5%',
     copy: '세련된 스타일로 갈 때 딱 좋은 곳. 분위기도 좋고 음식도 훌륭해요',
   },
@@ -24,8 +24,8 @@ const reviews = [
     rating: '4.7',
     area: '청담',
     likes: '142',
-    styleImage: '/assets/reviewpage-card-02-style.png',
-    placeImage: '/assets/reviewpage-card-02-place.png',
+    styleImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-02-style.png`,
+    placeImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-02-place.png`,
     styleCropTop: '-35.11%',
     copy: '시크한 스타일로 갈 때 잘 어울리는 곳. 분위기가 세련되고 사진도 잘 나와요.',
   },
@@ -36,8 +36,8 @@ const reviews = [
     rating: '4.7',
     area: '성수',
     likes: '142',
-    styleImage: '/assets/reviewpage-card-03-style.png',
-    placeImage: '/assets/reviewpage-card-03-place.png',
+    styleImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-03-style.png`,
+    placeImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-03-place.png`,
     styleCropTop: '-23.85%',
     copy: '빈티지한 데님룩으로 가기 좋은 곳. 공간도 감각적이고 음식도 깔끔해요.',
   },
@@ -48,8 +48,8 @@ const reviews = [
     rating: '4.7',
     area: '연남',
     likes: '142',
-    styleImage: '/assets/reviewpage-card-04-style.png',
-    placeImage: '/assets/reviewpage-card-04-place.png',
+    styleImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-04-style.png`,
+    placeImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-04-place.png`,
     styleCropTop: '-24.35%',
     copy: '편안한 니트룩에 잘 맞는 곳. 부담 없이 가기 좋고 메뉴도 무난해요.',
   },
@@ -60,8 +60,8 @@ const reviews = [
     rating: '4.7',
     area: '망원',
     likes: '142',
-    styleImage: '/assets/reviewpage-card-05-style.png',
-    placeImage: '/assets/reviewpage-card-05-place.png',
+    styleImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-05-style.png`,
+    placeImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-05-place.png`,
     styleCropTop: '-13.5%',
     copy: '빈티지한 스타일로 가면 딱 좋은 곳. 가볍게 먹기 좋고 분위기도 좋아요.',
   },
@@ -72,8 +72,8 @@ const reviews = [
     rating: '4.7',
     area: '청담',
     likes: '142',
-    styleImage: '/assets/reviewpage-card-06-style.png',
-    placeImage: '/assets/reviewpage-card-06-place.png',
+    styleImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-06-style.png`,
+    placeImage: `${import.meta.env.BASE_URL}assets/reviewpage-card-06-place.png`,
     styleCropTop: '-13.5%',
     copy: '단정한 셔츠룩에 잘 어울리는 곳. 차분한 분위기라 데이트하기 좋아요.',
   },
@@ -85,23 +85,23 @@ const navItems = [
     label: '홈',
     icon: (
       <>
-        <img className="nav-home-body" src="/assets/home-nav-home-2.svg" alt="" />
-        <img className="nav-home-door" src="/assets/home-nav-home-1.svg" alt="" />
+        <img className="nav-home-body" src={`${import.meta.env.BASE_URL}assets/home-nav-home-2.svg`} alt="" />
+        <img className="nav-home-door" src={`${import.meta.env.BASE_URL}assets/home-nav-home-1.svg`} alt="" />
       </>
     ),
   },
   {
     id: 'save',
     label: '저장',
-    icon: <img src="/assets/home-nav-save.svg" alt="" />,
+    icon: <img src={`${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />,
   },
   {
     id: 'search',
     label: '탐색',
     icon: (
       <>
-        <img className="nav-search-ring" src="/assets/home-nav-search-2.svg" alt="" />
-        <img className="nav-search-dot" src="/assets/home-nav-search-1.svg" alt="" />
+        <img className="nav-search-ring" src={`${import.meta.env.BASE_URL}assets/home-nav-search-2.svg`} alt="" />
+        <img className="nav-search-dot" src={`${import.meta.env.BASE_URL}assets/home-nav-search-1.svg`} alt="" />
       </>
     ),
   },
@@ -110,8 +110,8 @@ const navItems = [
     label: '마이페이지',
     icon: (
       <>
-        <img className="nav-profile-shoulder" src="/assets/home-nav-user-1.svg" alt="" />
-        <img className="nav-profile-head" src="/assets/home-nav-user-2.svg" alt="" />
+        <img className="nav-profile-shoulder" src={`${import.meta.env.BASE_URL}assets/home-nav-user-1.svg`} alt="" />
+        <img className="nav-profile-head" src={`${import.meta.env.BASE_URL}assets/home-nav-user-2.svg`} alt="" />
       </>
     ),
   },
@@ -128,8 +128,8 @@ function ReviewPageScreen({ onBack, onHome, onMyPage, onCameraAddress, onSaveRec
 
       <header className="review-page-header">
         <button className="review-page-icon-button review-page-back" type="button" aria-label="뒤로가기" onClick={onBack}>
-          <img className="review-page-back-head" src="/assets/address-back-head.svg" alt="" />
-          <img className="review-page-back-line" src="/assets/address-back-line.svg" alt="" />
+          <img className="review-page-back-head" src={`${import.meta.env.BASE_URL}assets/address-back-head.svg`} alt="" />
+          <img className="review-page-back-line" src={`${import.meta.env.BASE_URL}assets/address-back-line.svg`} alt="" />
         </button>
         <button className="review-page-icon-button review-page-menu" type="button" aria-label="메뉴">
           <span />
@@ -312,7 +312,7 @@ function ReviewCard({ review, onSaveRecommendation, isSaved }) {
               })
             }}
           >
-            <img src={isSaved ? '/assets/bookmark-filled.svg' : '/assets/home-nav-save.svg'} alt="" />
+            <img src={isSaved ? `${import.meta.env.BASE_URL}assets/bookmark-filled.svg` : `${import.meta.env.BASE_URL}assets/home-nav-save.svg`} alt="" />
           </button>
         </div>
         <p>
@@ -329,16 +329,16 @@ function ReviewCard({ review, onSaveRecommendation, isSaved }) {
         <div className="review-page-card-meta">
           <div>
             <span>
-              <img src="/assets/review-star.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/review-star.svg`} alt="" />
               {review.rating}
             </span>
             <span>
-              <img src="/assets/review-location.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/review-location.svg`} alt="" />
               {review.area}
             </span>
           </div>
           <span>
-            <img src="/assets/review-like.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/review-like.svg`} alt="" />
             {review.likes}
           </span>
         </div>
@@ -367,7 +367,7 @@ function ReviewBottomNavigation({ onHome, onMyPage, onCameraAddress }) {
 
       <button className="home-camera-button" type="button" aria-label="촬영" onClick={onCameraAddress}>
         <span>
-          <img src="/assets/home-camera.svg" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/home-camera.svg`} alt="" />
         </span>
       </button>
     </nav>
